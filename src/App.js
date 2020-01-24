@@ -1,8 +1,23 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 function App() {
+
+  axios.get('http://localhost:5000/student')
+    .then(function (response) {
+      // handle success
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .finally(function () {
+      // always executed
+    });
+
   return (
     <div className="App">
       <header className="App-header">
