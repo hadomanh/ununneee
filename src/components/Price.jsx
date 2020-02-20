@@ -8,15 +8,15 @@ class Price extends Component {
                     <div className="row justify-content-center">
                         <div className="col-lg-6">
                             <div className="section_tittle text-center">
-                                <h2>Premium pack</h2>
+                                <h2>Premium package</h2>
                             </div>
                         </div>
                     </div>
                     <div className="row justify-content-center">
                         <div className="col-lg-3 col-sm-6">
                             <div className="single_pricing_part">
-                                <p>Gold Package</p>
-                                <h3>$50.00</h3>
+                                <p>12 months</p>
+                                <h3>$100.00</h3>
                                 <ul>
                                     <li>2GB Bandwidth</li>
                                     <li>Two Account</li>
@@ -27,7 +27,7 @@ class Price extends Component {
                         </div>
                         <div className="col-lg-3 col-sm-6">
                             <div className="single_pricing_part">
-                                <p>Silver Package</p>
+                                <p>6 months</p>
                                 <h3>$60.00</h3>
                                 <ul>
                                     <li>2GB Bandwidth</li>
@@ -39,8 +39,8 @@ class Price extends Component {
                         </div>
                         <div className="col-lg-3 col-sm-6">
                             <div className="single_pricing_part">
-                                <p>Silver Package</p>
-                                <h3>$80.00</h3>
+                                <p>1 month</p>
+                                <h3>$15.00</h3>
                                 <ul>
                                     <li>2GB Bandwidth</li>
                                     <li>Two Account</li>

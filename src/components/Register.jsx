@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-const emailRegex = "^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$"
-const passwordRegex = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+const emailRegex = "^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$";
+const passwordRegex = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}";
 
 class Register extends Component {
 
@@ -13,7 +13,8 @@ class Register extends Component {
             email: "",
             password: "",
             repeatPassword: "",
-            errorMessage: false
+            errorMessage: false,
+            emailErrorMessage: false
         }
     }
 
@@ -25,50 +26,56 @@ class Register extends Component {
     }
 
     handleFormSubmit = (event) => {
+        var that = this;
 
         event.preventDefault();
 
         if (this.state.password !== this.state.repeatPassword) {
             this.setState({ errorMessage: true });
-        
         }
-        else{
+        else {
             console.log("clicked!");
-        
 
             axios({
                 method: 'post',
                 url: 'http://localhost:5000/users',
-                data:{
+                data: {
                     email: this.state.email,
                     password: this.state.password,
                     name: this.state.name
                 }
-               
+
             })
                 .then(function (response) {
                     //handle success
-                    console.log(response);
+                    if(response.status === 201){
+                        alert(response.data.message);
+                    }
                 })
-                .catch(function (response) {
+                .catch(function (error) {
                     //handle error
-                    console.log(response);
+                    if(error.response.status === 400){
+                        that.setState({
+                            emailErrorMessage: true
+                        });
+                    }
                 });
         }
 
-        
+
 
     }
 
 
     render() {
         return (
-            <article className=" mx-auto" style={{ maxWidth: '400px' }}>
-                <h4 className=" mt-3 text-center text-light">Create Account</h4>
+            <div className="mx-auto" style={{ maxWidth: '400px' }}>
+                <div style={{ height: "150px" }}></div>
+                <h4 className="text-center text-light">Create Account</h4>
                 <p className="text-center">Get started with your free account</p>
 
                 <p>
-                    <a href className="btn btn-block btn-twitter"> <i className="fab fa-twitter" /> &nbsp; Login via Twitter</a>
+                    <a href className="btn btn-block btn-google"> <i class="fab fa-google"/> &nbsp; Login via Google</a>
                     <a href className="btn btn-block btn-facebook"> <i className="fab fa-facebook-f" /> &nbsp; Login via facebook</a>
                 </p>
                 <hr className="bg-light" />
@@ -83,6 +90,10 @@ class Register extends Component {
                         <input name="name" className="form-control" placeholder="Full name" type="text" onChange={(event) => this.handleChange(event)} />
                     </div>
 
+                    {(() => {
+                        if (this.state.emailErrorMessage)
+                            return (<i className="text-danger">Email has been used!</i>)
+                    })()}
                     <div className="form-group input-group">
                         <div className="input-group-prepend">
                             <span className="input-group-text"> <i className="fa fa-envelope" /> </span>
@@ -122,12 +133,12 @@ class Register extends Component {
                             <span className="input-group-text"> <i className="fa fa-lock" /> </span>
                         </div>
                         <input name="password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" className="form-control" placeholder="Create password" type="password" onChange={(event) => this.handleChange(event)} />
-                    </div> {/* form-group// */}
+                    </div>
 
 
                     {(() => {
                         if (this.state.errorMessage)
-                            return (<i className="text-danger">Wrong password</i>)
+                            return (<i className="text-danger">Wrong password!</i>)
                     })()}
 
                     <div className="form-group input-group">
@@ -145,7 +156,7 @@ class Register extends Component {
                     <p className="text-center">Have an account? <a href>Log In</a> </p>
 
                 </form>
-            </article>
+            </div>
 
         );
     }

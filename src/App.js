@@ -13,6 +13,15 @@ import Lastest from './components/Lastest';
 import Gallery from './components/Gallery';
 import Upcoming from './components/Upcoming';
 import Register from './components/Register';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Test from './components/Test';
+import Login from './components/Login';
+import Fighter from './components/Fighter';
 
 function App() {
 
@@ -32,16 +41,38 @@ function App() {
   return (
     <div className="App">
       <div className="body_bg">
-        
-        <Header />
-        <Banner />
-        {/* <ClientLogo /> */}
-        {/* <AboutUs /> */}
-        <Register/>
-        {/* <Lastest/> */}
-        {/* <Gallery/> */}
-        {/* <Upcoming/> */}
-        {/* <Price /> */}
+
+        <Router>
+          <Header />
+
+          <Switch>
+
+            <Route exact path="/">
+              {/* <Test/> */}
+              <Gallery />
+              <Banner />
+              <ClientLogo />
+              <AboutUs />
+              <Lastest />
+              <Upcoming />
+              <Price />
+            </Route>
+
+            <Route path="/register">
+              <Register />
+            </Route>
+
+            <Route path="/login">
+              <Login />
+            </Route>
+
+            <Route path="/fighter">
+              <Fighter />
+            </Route>
+
+          </Switch>
+        </Router>
+
         <Footer />
 
       </div>
