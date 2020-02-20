@@ -27,6 +27,9 @@
     -->
   <title>React App</title>
 
+  
+  <!-- Theme style -->
+  <link rel="stylesheet" href="css/adminlte.min.css">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <!-- animate CSS -->
@@ -46,6 +49,19 @@
   <link rel="stylesheet" href="css/style.css">
   <!-- register CSS -->
   <link rel="stylesheet" href="css/register.css">
+
+
+  <!-- IonIcons -->
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+  <!-- Ekko Lightbox -->
+  <link rel="stylesheet" href="css/ekko-lightbox.css">
+  
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
 
 
 
@@ -97,6 +113,41 @@
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+  <!-- jQuery -->
+  <script src="js/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE -->
+  <script src="js/adminlte.js"></script>
+
+  <!-- OPTIONAL SCRIPTS -->
+  <script src="js/Chart.min.js"></script>
+  <script src="js/demo.js"></script>
+  <script src="js/dashboard3.js"></script>
+  <!-- jQuery UI -->
+  <script src="js/jquery-ui.min.js"></script>
+  <!-- Ekko Lightbox -->
+  <script src="js/ekko-lightbox.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="js/adminlte.min.js"></script>
+  <!-- Filterizr-->
+  <script src="js/jquery.filterizr.min.js"></script>
+  <script>
+    $(function () {
+      $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox({
+          alwaysShowClose: true
+        });
+      });
+  
+      $('.filter-container').filterizr({gutterPixels: 3});
+      $('.btn[data-filter]').on('click', function() {
+        $('.btn[data-filter]').removeClass('active');
+        $(this).addClass('active');
+      });
+    })
+  </script>
 
 
 

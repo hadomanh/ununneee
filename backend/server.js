@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
 require('dotenv').config();
-
+const userModel=require('./user/user.schema');
 var Schema = mongoose.Schema;
-
+const bcryptjs = require('bcryptjs');
 // connect to mongodb
 mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@localhost:27017/' + process.env.DATABASE + '?authSource=admin', { useNewUrlParser: true, useUnifiedTopology: true }, (e) => {
     //FIXME: tim cach viet khac
@@ -52,11 +52,10 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
         }));
 
         server.get('/users', (req, res) => {
-            var users = mongoose.model('users', new Schema());
+            // var users = mongoose.model('users', new Schema());
 
-            users.find({}, (err, data) => {
+            userModel.find({}, (err, data) => {
                 console.log(data);
-
                 res.send(data)
             })
 
@@ -64,8 +63,33 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
         })
 
         server.post('/users', (req, res) => {
-            console.log("new user: ", req.body);
-            
+            console.log("new user: ", req.body.email);
+            const email=req.body.email;
+            const pass=req.body.password;
+            const name=req.body.name;
+            userModel.find({email:req.body.email},(err,data)=>{
+                if(data.length>0) {
+                    console.log("email exist");
+                    res.status(400).json({
+                        success: false,
+                        message: "Email has been used"
+                    });
+                }
+                else{
+                    const hashPassword = bcryptjs.hashSync(pass, 10);
+                    
+                    userModel.create({
+                        email: email,
+                        password: hashPassword,
+                        name: name
+                    })
+                    
+                    res.status(201).json({
+                        success: true,
+                        message: "Account " + email +" has been created"
+                    });
+                }
+            })
         })
 
         server.listen(process.env.PORT || 5000, (err) => {
