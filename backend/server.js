@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
 require('dotenv').config();
-const userModel=require('./user/user.schema');
+const userModel = require('./user/user.schema');
 var Schema = mongoose.Schema;
 const bcryptjs = require('bcryptjs');
 // connect to mongodb
@@ -52,41 +52,89 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
         }));
 
         server.get('/users', (req, res) => {
-            // var users = mongoose.model('users', new Schema());
-
             userModel.find({}, (err, data) => {
                 console.log(data);
                 res.send(data)
             })
-
-
         })
 
+        server.put('/users', (req, res) => {
+            const email = req.body.email;
+            const pass = req.body.password;
+            userModel.findOne({ email: email }, (err, data) => {
+                if (err) {
+                    console.log(err);
+                    res.status(500).json({
+                        success: false,
+                        message: error.message
+                    });
+                }
+                else {
+                    if (data !== null) {
+                        if (!bcryptjs.compareSync(pass, data.password)
+                        ) {
+                            res.status(400).json({
+                                success: false,
+                                message: "Wrong Password"
+                            })
+                        }
+                        else {
+                            req.session.currentUser = {
+                                email: data.email,
+                            };
+                            console.log(req.session);
+                            res.status(200).json({
+                                success: true,
+                                message: "Login Success",
+                                data: {
+                                    email: data.email,
+                                    name: data.name
+                                }
+                            })
+                        }
+                    }
+                    else {
+                        res.status(404).json({
+                            success: false,
+                            message: "Email doesn't exist"
+                        })
+                    }
+                }
+
+            })
+        })
+
+
+
         server.post('/users', (req, res) => {
-            console.log("new user: ", req.body.email);
-            const email=req.body.email;
-            const pass=req.body.password;
-            const name=req.body.name;
-            userModel.find({email:req.body.email},(err,data)=>{
-                if(data.length>0) {
-                    console.log("email exist");
+            const email = req.body.email;
+            const pass = req.body.password;
+            const name = req.body.name;
+            userModel.findOne({ email: req.body.email }, (err, data) => {
+                if (data !== null) {
                     res.status(400).json({
                         success: false,
                         message: "Email has been used"
                     });
                 }
-                else{
+                else {
                     const hashPassword = bcryptjs.hashSync(pass, 10);
-                    
+
                     userModel.create({
                         email: email,
                         password: hashPassword,
-                        name: name
-                    })
-                    
+                        name: name,
+                    });
+                    req.session.currentUser = {
+                        email: req.body.email,
+                    };
                     res.status(201).json({
                         success: true,
-                        message: "Account " + email +" has been created"
+                        message: "Account " + email + " has been created",
+                        data: {
+                            name: req.body.name,
+                            email: req.body.email,
+                        }
                     });
                 }
             })
