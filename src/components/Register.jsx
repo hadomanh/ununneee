@@ -40,11 +40,10 @@ class Register extends Component {
                     password: this.state.password,
                     name: this.state.name
                 }
-
             })
                 .then(function (response) {
                     //handle success
-                    if(response.status === 201){
+                    if (response.status === 201) {
                         alert(response.data.message);
                     };
                     const info = {
@@ -57,17 +56,46 @@ class Register extends Component {
                 })
                 .catch(function (error) {
                     //handle error
-                    if(error.response.status === 400){
+                    if (error.response.status === 400) {
                         that.setState({
                             emailErrorMessage: true
                         });
                     }
                 });
         }
+<<<<<<< HEAD
+    }
+
+    componentDidMount() {
+        axios({
+            method: "GET",
+            url: "http://localhost:5000/auth/google/user",
+            withCredentials: true,
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Credentials": true
+            }
+        })
+            .then(response => {
+                // handle success
+                console.log("register front-end", response);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
+=======
+>>>>>>> master
     }
 
 
+
     render() {
+
         return (
             <div className="mx-auto" style={{ maxWidth: '400px' }}>
                 <div style={{ height: "150px" }}></div>
@@ -75,7 +103,7 @@ class Register extends Component {
                 <p className="text-center">Get started with your free account</p>
 
                 <p>
-                    <a href className="btn btn-block btn-google"> <i class="fab fa-google"/> &nbsp; Login via Google</a>
+                    <a href="http://localhost:5000/auth/google" className="btn btn-block btn-google"> <i class="fab fa-google" /> &nbsp; Login via Google</a>
                     <a href className="btn btn-block btn-facebook"> <i className="fab fa-facebook-f" /> &nbsp; Login via facebook</a>
                 </p>
                 <hr className="bg-light" />

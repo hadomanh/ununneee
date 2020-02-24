@@ -7,6 +7,17 @@ require('dotenv').config();
 const userModel = require('./user/user.schema');
 var Schema = mongoose.Schema;
 const bcryptjs = require('bcryptjs');
+const passport = require('passport');
+var Schema = mongoose.Schema;
+
+require('dotenv').config();
+
+
+const passportSetup = require('./passport/google-auth');
+const authRoutes = require('./routes/auth-routes');
+const userModel = require('./user/user.schema');
+
+
 // connect to mongodb
 mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@localhost:27017/' + process.env.DATABASE + '?authSource=admin', { useNewUrlParser: true, useUnifiedTopology: true }, (e) => {
     //FIXME: tim cach viet khac
@@ -19,41 +30,52 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
         const server = express();
 
         server.use(express.static('public'));
+        // set up cors to allow us to accept requests from our client
         server.use(cors({
-            origin: ['http://localhost:3000'],
-            credentials: true
-        }));
+                origin: "http://localhost:3000", // allow to server to accept request from different origin
+                methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+                credentials: true // allow session cookie from browser to pass through
+            })
+        );
 
 
-        server.use(function (req, res, next) {
+        // server.use(function (req, res, next) {
 
-            // Website you wish to allow to connect
-            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+        //     // Website you wish to allow to connect
+        //     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 
-            // Request methods you wish to allow
-            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+        //     // Request methods you wish to allow
+        //     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-            // Request headers you wish to allow
-            res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+        //     // Request headers you wish to allow
+        //     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
-            // Set to true if you need the website to include cookies in the requests sent
-            // to the API (e.g. in case you use sessions)
-            res.setHeader('Access-Control-Allow-Credentials', true);
+        //     // Set to true if you need the website to include cookies in the requests sent
+        //     // to the API (e.g. in case you use sessions)
+        //     res.setHeader('Access-Control-Allow-Credentials', true);
 
-            // Pass to next layer of middleware
-            next();
-        });
+        //     // Pass to next layer of middleware
+        //     next();
+        // });
 
         server.use(bodyParser.json());
+
+        // set up session cookies
         server.use(session({
             secret: 'keyboard cat',
             resave: true,
             saveUninitialized: false,
         }));
 
+        // initialize passport
+        server.use(passport.initialize());
+        server.use(passport.session());
+
+        // set up auth route
+        server.use('/auth', authRoutes);
+
         server.get('/users', (req, res) => {
             userModel.find({}, (err, data) => {
-                console.log(data);
                 res.send(data)
             })
         })
