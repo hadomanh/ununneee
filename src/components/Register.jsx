@@ -51,7 +51,6 @@ class Register extends Component {
                         'email': response.data.data.email,
                     };
                     window.localStorage.setItem("info", JSON.stringify(info));
-                    // this.props.push("/");
                     window.location.href='/';
                 })
                 .catch(function (error) {
@@ -63,7 +62,6 @@ class Register extends Component {
                     }
                 });
         }
-<<<<<<< HEAD
     }
 
     componentDidMount() {
@@ -88,8 +86,6 @@ class Register extends Component {
             .finally(function () {
                 // always executed
             });
-=======
->>>>>>> master
     }
 
 
