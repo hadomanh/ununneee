@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 class Header extends Component {
+
+    logout =()=>{
+        
+        window.localStorage.clear();
+        
+        axios.get('http://localhost:5000/auth/logout')
+        .then((response)=>{
+            window.location.href = '/';
+        })
+    }
 
 
     render() {
@@ -9,7 +20,7 @@ class Header extends Component {
         var isLoggedIn = [];
         if(JSON.parse(localStorage.getItem('info')))
         isLoggedIn.push(<li className="nav-item"><NavLink className="nav-link" to="/" activeStyle={{color: 'crimson'}} >WELCOME {JSON.parse(localStorage.getItem('info')).name.toUpperCase()}</NavLink></li>);
-        isLoggedIn.push(<li className="nav-item"><NavLink className="nav-link" to="/" activeStyle={{}} >Log out</NavLink></li>);
+        isLoggedIn.push(<li className="nav-item"><NavLink className="nav-link" to="/" activeStyle={{}} onClick={()=>this.logout()} >Log out</NavLink></li>);
 
         var isLoggedOut = [];
         isLoggedOut.push(<li className="nav-item"><NavLink className="nav-link" to="/register" activeStyle={{ fontWeight: "bold", color: "red" }} >Register</NavLink></li>);
@@ -46,12 +57,6 @@ class Header extends Component {
                                                 <a className="dropdown-item" href="blog.html"> blog</a>
                                                 <a className="dropdown-item" href="single-blog.html">Single blog</a>
                                             </div>
-                                        </li>
-
-                                        
-
-                                        <li className="nav-item">
-                                            <NavLink className="nav-link" to="/login" activeStyle={{ fontWeight: "bold", color: "red" }} >Login</NavLink>
                                         </li>
 
                                         {(

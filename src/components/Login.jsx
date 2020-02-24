@@ -28,8 +28,8 @@ class Login extends Component {
         event.preventDefault();
         {
             axios({
-                method: 'put',
-                url: 'http://localhost:5000/users',
+                method: 'post',
+                url: 'http://localhost:5000/users/verify',
                 data: {
                     email: this.state.email,
                     password: this.state.pass,
@@ -43,6 +43,8 @@ class Login extends Component {
                             'email': response.data.data.email,
                         };
                         window.localStorage.setItem("info", JSON.stringify(info));
+
+                        window.location.href = '/';
                     }
                 })
                 .catch(function (error) {
@@ -56,8 +58,41 @@ class Login extends Component {
                     else if (error.response.status === 500) {
                         console.log('500');
                     }
+                })
+                .finally(() => {
+
                 });
         }
+    }
+
+    componentDidMount() {
+        axios({
+            method: "GET",
+            url: "http://localhost:5000/auth/google/user",
+            withCredentials: true,
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Credentials": true
+            }
+        })
+            .then(response => {
+                // handle success
+                console.log("login front-end", response);
+                var info = {
+                    name: response.data.name,
+                    email: response.data.email
+                }
+
+                window.localStorage.setItem('info', JSON.stringify(info));
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
     }
 
 
@@ -97,7 +132,7 @@ class Login extends Component {
 
 
                 <p>
-                    <a href className="btn btn-block btn-google"> <i class="fab fa-google" /> &nbsp; Login via Google</a>
+                    <a href="http://localhost:5000/auth/google" className="btn btn-block btn-google"> <i class="fab fa-google" /> &nbsp; Login via Google</a>
                     <a href className="btn btn-block btn-facebook"> <i className="fab fa-facebook-f" /> &nbsp; Login via facebook</a>
                 </p>
 
