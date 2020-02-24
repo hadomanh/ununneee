@@ -2,7 +2,19 @@ import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 class Header extends Component {
+
+
     render() {
+
+        var isLoggedIn = [];
+        if(JSON.parse(localStorage.getItem('info')))
+        isLoggedIn.push(<li className="nav-item"><NavLink className="nav-link" to="/" activeStyle={{color: 'crimson'}} >WELCOME {JSON.parse(localStorage.getItem('info')).name.toUpperCase()}</NavLink></li>);
+        isLoggedIn.push(<li className="nav-item"><NavLink className="nav-link" to="/" activeStyle={{}} >Log out</NavLink></li>);
+
+        var isLoggedOut = [];
+        isLoggedOut.push(<li className="nav-item"><NavLink className="nav-link" to="/register" activeStyle={{ fontWeight: "bold", color: "red" }} >Register</NavLink></li>);
+        isLoggedOut.push(<li className="nav-item"><NavLink className="nav-link" to="/login" activeStyle={{ fontWeight: "bold", color: "red" }} >Login</NavLink></li>);
+
         return (
             <header className="main_menu single_page_menu">
                 <div className="container">
@@ -36,13 +48,22 @@ class Header extends Component {
                                             </div>
                                         </li>
 
-                                        <li className="nav-item">
-                                            <NavLink className="nav-link" to="/register" activeStyle={{ fontWeight: "bold", color: "red" }} >Register</NavLink>
-                                        </li>
+                                        
 
                                         <li className="nav-item">
                                             <NavLink className="nav-link" to="/login" activeStyle={{ fontWeight: "bold", color: "red" }} >Login</NavLink>
                                         </li>
+
+                                        {(
+                                            () => {
+                                                if (window.localStorage.getItem('info')) {
+                                                    return (
+                                                        isLoggedIn
+                                                    )
+                                                }
+                                                else return (isLoggedOut)
+                                            }
+                                        )()}
 
                                     </ul>
                                 </div>

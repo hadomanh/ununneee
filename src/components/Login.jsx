@@ -1,11 +1,66 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const emailRegex = "^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$";
 const passwordRegex = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}";
 
 class Login extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            email: "",
+            pass: "",
+        }
+    }
+
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+
+
+
+    handleFormSubmit = (event) => {
+        var that = this;
+        event.preventDefault();
+        {
+            axios({
+                method: 'put',
+                url: 'http://localhost:5000/users',
+                data: {
+                    email: this.state.email,
+                    password: this.state.pass,
+                }
+            })
+                .then(function (response) {
+                    //handle success
+                    if (response.status === 200) {
+                        const info = {
+                            'name': response.data.data.name,
+                            'email': response.data.data.email,
+                        };
+                        window.localStorage.setItem("info", JSON.stringify(info));
+                    }
+                })
+                .catch(function (error) {
+                    //handle error
+                    if (error.response.status === 400) {
+                        console.log('400');
+                    }
+                    else if (error.response.status === 404) {
+                        console.log('404');
+                    }
+                    else if (error.response.status === 500) {
+                        console.log('500');
+                    }
+                });
+        }
+    }
+
+
     render() {
         return (
             <div className="mx-auto" style={{ maxWidth: '400px' }}>
@@ -27,7 +82,7 @@ class Login extends Component {
                         <div className="input-group-prepend">
                             <span className="input-group-text"> <i className="fa fa-lock" /> </span>
                         </div>
-                        <input name="password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" className="form-control" placeholder="Password" type="password" onChange={(event) => this.handleChange(event)} />
+                        <input name="pass" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" className="form-control" placeholder="Password" type="password" onChange={(event) => this.handleChange(event)} />
                     </div>
 
                     <div className="form-group">

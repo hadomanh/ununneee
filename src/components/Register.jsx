@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component,  } from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 const emailRegex = "^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$";
@@ -22,20 +23,15 @@ class Register extends Component {
         this.setState({
             [event.target.name]: event.target.value
         });
-
     }
 
     handleFormSubmit = (event) => {
         var that = this;
-
         event.preventDefault();
-
         if (this.state.password !== this.state.repeatPassword) {
             this.setState({ errorMessage: true });
         }
         else {
-            console.log("clicked!");
-
             axios({
                 method: 'post',
                 url: 'http://localhost:5000/users',
@@ -49,7 +45,14 @@ class Register extends Component {
                     //handle success
                     if (response.status === 201) {
                         alert(response.data.message);
-                    }
+                    };
+                    const info = {
+                        'name': response.data.data.name,
+                        'email': response.data.data.email,
+                    };
+                    window.localStorage.setItem("info", JSON.stringify(info));
+                    // this.props.push("/");
+                    window.location.href='/';
                 })
                 .catch(function (error) {
                     //handle error
@@ -60,6 +63,7 @@ class Register extends Component {
                     }
                 });
         }
+<<<<<<< HEAD
     }
 
     componentDidMount() {
@@ -84,6 +88,8 @@ class Register extends Component {
             .finally(function () {
                 // always executed
             });
+=======
+>>>>>>> master
     }
 
 
