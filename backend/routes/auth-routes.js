@@ -6,6 +6,16 @@ const passport = require('passport');
 //     res.render('login', { user: req.user });
 // });
 
+router.get('/facebook', passport.authenticate('facebook', {
+    scope: ['email']
+}));
+
+router.get('/facebook/redirect', passport.authenticate("facebook", {
+    successRedirect: 'http://localhost:3000/',
+    failureRedirect: "http://localhost:3000/register"
+  }));
+
+
 router.get('/logout', (req, res)=>{
     req.session.destroy((err) => {
         if (err) {
@@ -32,6 +42,7 @@ router.get('/google', passport.authenticate('google', {
         'https://www.googleapis.com/auth/userinfo.email'
     ]
 }));
+
 
 // callback route for google to redirect to
 // hand control to passport to use code to grab profile info
