@@ -6,7 +6,7 @@ const session = require('express-session');
 const bcryptjs = require('bcryptjs');
 const passport = require('passport');
 var Schema = mongoose.Schema;
-
+require('./passport/facebook-auth')(passport);
 require('dotenv').config();
 
 
@@ -46,6 +46,7 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
         }));
 
         // initialize passport
+        
         server.use(passport.initialize());
         server.use(passport.session());
 
@@ -58,6 +59,8 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
                 throw err;
             else
                 console.log("Server listening on port 5000...");
+                console.log('hadm x tanhng...');
+                console.log('ununneee here we come');
         });
     }
 })

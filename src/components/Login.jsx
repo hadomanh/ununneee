@@ -43,7 +43,6 @@ class Login extends Component {
                             'email': response.data.data.email,
                         };
                         window.localStorage.setItem("info", JSON.stringify(info));
-
                         window.location.href = '/';
                     }
                 })
@@ -75,7 +74,7 @@ class Login extends Component {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Credentials": true
             }
-        })
+        }) 
             .then(response => {
                 // handle success
                 console.log("login front-end", response);
@@ -85,6 +84,7 @@ class Login extends Component {
                 }
 
                 window.localStorage.setItem('info', JSON.stringify(info));
+                
             })
             .catch(function (error) {
                 // handle error
@@ -133,7 +133,7 @@ class Login extends Component {
 
                 <p>
                     <a href="http://localhost:5000/auth/google" className="btn btn-block btn-google"> <i class="fab fa-google" /> &nbsp; Login via Google</a>
-                    <a href className="btn btn-block btn-facebook"> <i className="fab fa-facebook-f" /> &nbsp; Login via facebook</a>
+                    <a href="http://localhost:5000/auth/facebook" className="btn btn-block btn-facebook"> <i className="fab fa-facebook-f" /> &nbsp; Login via facebook</a>
                 </p>
 
             </div>

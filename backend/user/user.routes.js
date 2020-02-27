@@ -1,5 +1,5 @@
 const route = require('express').Router();
-
+const userModel = require('./user.schema');
 route.get('/', (req, res) => {
     console.log('session ne',req.session);
     
