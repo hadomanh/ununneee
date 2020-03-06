@@ -74,7 +74,7 @@ class Login extends Component {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Credentials": true
             }
-        }) 
+        })
             .then(response => {
                 // handle success
                 console.log("login front-end", response);
@@ -84,7 +84,7 @@ class Login extends Component {
                 }
 
                 window.localStorage.setItem('info', JSON.stringify(info));
-                
+
             })
             .catch(function (error) {
                 // handle error
@@ -98,44 +98,44 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="mx-auto" style={{ maxWidth: '400px' }}>
-
-                <div style={{ height: "150px" }}></div>
-
-                <h4 className="text-center text-light">Login</h4>
-                <p className="text-center">Don't have account? <Link to="/register">Signup now</Link> </p>
-                <form onSubmit={(event) => this.handleFormSubmit(event)} >
-
-                    <div className="form-group input-group">
-                        <div className="input-group-prepend">
-                            <span className="input-group-text"> <i className="fa fa-envelope" /> </span>
+            <div className="login-section section pt-95 pt-lg-75 pt-md-65 pt-sm-55 pt-xs-45">
+                <div className="container">
+                    <div className="row">
+                        {/* Login */}
+                        <div className="col-md-6 col-12 d-flex">
+                            <div className="gilbard-login">
+                                <h3>Login to your account</h3>
+                                <p>Gilbard provide how all this mistaken idea of denouncing pleasure and sing pain born an will give you a complete account of the system, and expound</p>
+                                {/* Login Form */}
+                                <form action="#">
+                                    <div className="row">
+                                        <div className="col-12 mb-30"><input type="text" placeholder="Type your username or email address" /></div>
+                                        <div className="col-12 mb-20"><input type="password" placeholder="Enter your passward" /></div>
+                                        <div className="col-12 mb-15">
+                                            <input type="checkbox" id="remember_me" />
+                                            <label htmlFor="remember_me">Remember me</label>
+                                            <a href="#">Forgotten pasward?</a>
+                                        </div>
+                                        <div className="col-12"><input type="submit" value="LOGIN" /></div>
+                                    </div>
+                                </form>
+                                <h4>Don’t have account? please click <Link to="/register">Register</Link> </h4>
+                            </div>
                         </div>
-                        <input name="email" pattern={emailRegex} title="" className="form-control" placeholder="Email address" type="email" onChange={(event) => this.handleChange(event)} />
-                    </div>
-
-                    <div className="form-group input-group">
-                        <div className="input-group-prepend">
-                            <span className="input-group-text"> <i className="fa fa-lock" /> </span>
+                        <div className="col-md-1 col-12 d-flex">
+                            <div className="login-reg-vertical-boder" />
                         </div>
-                        <input name="pass" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" className="form-control" placeholder="Password" type="password" onChange={(event) => this.handleChange(event)} />
+                        {/* Login With Social */}
+                        <div className="col-md-5 col-12 d-flex">
+                            <div className="gilbard-social-login">
+                                <h3>Also you can login with...</h3>
+                                <a href="http://localhost:5000/auth/facebook" className="facebook-login">Login with <i className="fa fa-facebook" /></a>
+                                <a href="http://localhost:5000/auth/google" className="google-plus-login">Login with <i className="fa fa-google-plus" /></a>
+                                <a href="#" className="twitter-login">Login with <i className="fa fa-twitter" /></a>
+                            </div>
+                        </div>
                     </div>
-
-                    <div className="form-group">
-                        <button type="submit" className="btn btn-primary btn-block" >Login</button>
-                    </div>
-
-                </form>
-
-
-                <hr className="bg-light" />
-
-
-
-                <p>
-                    <a href="http://localhost:5000/auth/google" className="btn btn-block btn-google"> <i class="fab fa-google" /> &nbsp; Login via Google</a>
-                    <a href="http://localhost:5000/auth/facebook" className="btn btn-block btn-facebook"> <i className="fab fa-facebook-f" /> &nbsp; Login via facebook</a>
-                </p>
-
+                </div>
             </div>
 
         );
