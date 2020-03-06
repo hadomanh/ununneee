@@ -47,6 +47,10 @@ function App() {
 
           <Switch>
 
+            <Route path="/fighter/:id">
+              <Fighter></Fighter>
+            </Route>
+
             <Route exact path="/">
               {/* <Test/> */}
               <Gallery />

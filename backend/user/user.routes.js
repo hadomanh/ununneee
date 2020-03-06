@@ -1,12 +1,16 @@
 const route = require('express').Router();
 const userModel = require('./user.schema');
+const bcryptjs= require('bcryptjs');
 route.get('/', (req, res) => {
     console.log('session ne',req.session);
-    
-    userModel.find({}, (err, data) => {
-        res.send(data);
-    });    
 })
+
+
+route.get('/get-fighter-by-id',(req,res)=>{
+    console.log('fightId ne',req.query.fighterId);
+})
+
+
 
 route.post('/verify', (req, res) => {
     const email = req.body.email;
@@ -89,3 +93,14 @@ route.post('/', (req, res) => {
 })
 
 module.exports = route;
+
+
+// get /user/:id -- lay 1 thang
+// get /user -- lay het 
+// post /user --- them moi
+// put /user -- update === admin
+// {email: name:}
+// === user.update({email: "tanhng"}, ()=>{
+
+// }
+// delete /user
