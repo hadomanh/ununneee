@@ -50,7 +50,7 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
         server.use(passport.initialize());
         server.use(passport.session());
 
-        // set up auth route
+        // set up route
         server.use('/auth', authRoutes);
         server.use('/users', userRoutes);
 
