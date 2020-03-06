@@ -3,21 +3,23 @@ import React, { Component } from 'react';
 class Banner extends Component {
     render() {
         return (
-            <section className="banner_part">
+            <div className="page-banner-area" style={{ backgroundImage: 'url(assets/images/bg/page-bg.jpg)' }}>
                 <div className="container">
-                    <div className="row align-items-center justify-content-between">
-                        <div className="col-lg-6 col-md-8">
-                            <div className="banner_text">
-                                <div className="banner_text_iner">
-                                    <h1>Charged by phonecard</h1>
-                                    <p className="text-right">Viettel, Vinaphone, Mobifone... available</p>
-                                    <a href="#" className="btn_1">Buy now</a>
-                                </div>
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="page-content text-center">
+                                <h1>KINGS OF THE <br /> WARRIORS</h1>
+                                <a className="df-btn" href="#">Buy now</a>
+                                <ul className="page-breadcrumb">
+                                    <li>Home</li>
+        <li>{this.props.path}</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+
         );
     }
 }

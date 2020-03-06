@@ -4,34 +4,42 @@ import GalleryItem from './GalleryItem';
 class Gallery extends Component {
     render() {
         return (
-            <section className="gallery_part section_padding">
+            <div className="new-game-area section pb-50 pb-lg-30 pb-md-20 pb-sm-10 pb-xs-0">
                 <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-xl-5">
-                            <div className="section_tittle text-center">
-                                <h2>Top Fighters</h2>
-                            </div>
-                        </div>
-                    </div>
                     <div className="row">
-                        <div className="col-xl-12">
-                            <div className="gallery_part_item">
-                                <div className="grid">
-                                    <div className="grid-sizer" />
-                                    <GalleryItem title="Khanh Linh" bio="Come and get it!" imageUrl="gallery_item_1.jpg" />
-                                    <GalleryItem title="Do Khanh Huyen" bio="You can't see me!" imageUrl="gallery_item_2.jpg" />
-                                    <GalleryItem title="Le Mai Linh" bio="Let's rock!" imageUrl="gallery_item_3.jpg" />
-                                    <GalleryItem title="Le Mai Linh" bio="Death is a wind, always by my side!" imageUrl="gallery_item_4.jpg" />
-                                    <GalleryItem title="Le Mai Linh" bio="Wanna try?" imageUrl="gallery_item_5.jpg" />
-                                    <GalleryItem title="Nguyen Phuong Mai" bio="You can't swipe left, cuz I'm your Mr. Right!" imageUrl="gallery_item_6.jpg" />
-                                    <GalleryItem title="Le Tran Diep Anh" bio="On your left!" imageUrl="gallery_item_7.jpg" />
-                                    <GalleryItem title="Thu Chang" bio="Come and get it!" imageUrl="gallery_item_8.jpg" />
-                                </div>
+                        <div className="col-12">
+                            {/*Section Title Start*/}
+                            <div className="section-title">
+                                <h2><span className="color-blue">new</span> streamers</h2>
                             </div>
+                            {/*Section Title End*/}
                         </div>
                     </div>
+                    <div className="row game-slide">
+                        <div className="col-4">
+                            <GalleryItem name="1" imgURL="assets/images/game/game1.jpg"/>
+                            <GalleryItem name="2" imgURL="assets/images/game/game2.jpg"/>
+                        </div>
+                        <div className="col-4">
+                            <GalleryItem name="3" imgURL="assets/images/game/game3.jpg"/>
+                            <GalleryItem name="4" imgURL="assets/images/game/game4.jpg"/>
+                        </div>
+                        <div className="col-4">
+                            <GalleryItem name="5" imgURL="assets/images/game/game5.jpg"/>
+                            <GalleryItem name="6" imgURL="assets/images/game/game6.jpg"/>
+                        </div>
+                        <div className="col-4">
+                            <GalleryItem name="7" imgURL="assets/images/game/game7.jpg"/>
+                            <GalleryItem name="8" imgURL="assets/images/game/game8.jpg"/>
+                        </div>
+                        <div className="col-4">
+                            <GalleryItem name="9" imgURL="assets/images/game/game9.jpg"/>
+                            <GalleryItem name="10" imgURL="assets/images/game/game10.jpg"/>
+                        </div>
+                        </div>
                 </div>
-            </section>
+            </div>
+
         );
     }
 }
