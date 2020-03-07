@@ -7,7 +7,6 @@ const bcryptjs = require('bcryptjs');
 module.exports = function(passport){
 passport.serializeUser((user, done) => {
     console.log("inside serializeUser()", user);
-
     done(null, user);
 });
 
