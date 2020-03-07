@@ -14,20 +14,20 @@ class Header extends Component {
             })
     }
 
-    componentWillMount(){
+    componentWillMount() {
         function loadScript(src) {
-          return new Promise(function(resolve, reject){
-            var script = document.createElement('script');
-            script.src = src;
-            script.addEventListener('load', function () {
-              resolve();
-            });
-            script.addEventListener('error', function (e) {
-              reject(e);
-            });
-            document.body.appendChild(script);
-            document.body.removeChild(script);
-          })
+            return new Promise(function (resolve, reject) {
+                var script = document.createElement('script');
+                script.src = src;
+                script.addEventListener('load', function () {
+                    resolve();
+                });
+                script.addEventListener('error', function (e) {
+                    reject(e);
+                });
+                document.body.appendChild(script);
+                document.body.removeChild(script);
+            })
         };
 
         loadScript("assets/js/vendor/modernizr-2.8.3.min.js")
@@ -42,13 +42,14 @@ class Header extends Component {
     render() {
 
         var isLoggedIn = [];
-        if (JSON.parse(localStorage.getItem('info')))
-            isLoggedIn.push(<li className="nav-item"><NavLink className="nav-link" to="/" activeStyle={{ color: 'crimson' }} >WELCOME {JSON.parse(localStorage.getItem('info')).name.toUpperCase()}</NavLink></li>);
-        isLoggedIn.push(<li className="nav-item"><NavLink className="nav-link" to="/" activeStyle={{}} onClick={() => this.logout()} >Log out</NavLink></li>);
+        if (JSON.parse(localStorage.getItem('info'))) {
+            isLoggedIn.push(<li><NavLink to="/" activeStyle={{ color: "white" }}>{JSON.parse(localStorage.getItem('info')).name}</NavLink></li>);
+            isLoggedIn.push(<li><NavLink to="/" activeStyle={{ color: "white" }} onClick={this.logout}>LOGOUT</NavLink></li>);
+        }
 
         var isLoggedOut = [];
-        isLoggedOut.push(<li className="nav-item"><NavLink className="nav-link" to="/register" activeStyle={{ fontWeight: "bold", color: "red" }} >Register</NavLink></li>);
-        isLoggedOut.push(<li className="nav-item"><NavLink className="nav-link" to="/login" activeStyle={{ fontWeight: "bold", color: "red" }} >Login</NavLink></li>);
+        isLoggedOut.push(<li><NavLink to="/login" activeStyle={{ color: "white" }}>LOGIN</NavLink></li>);
+        isLoggedOut.push(<li><NavLink to="/register" activeStyle={{ color: "white" }}>REGISTER</NavLink></li>);
 
         return (
             <header className="header header-static bg-black header-sticky">
@@ -58,7 +59,7 @@ class Header extends Component {
                             {/*Logo start*/}
                             <div className="col-12 col-md-3 col-lg-3 order-md-1 order-lg-1 mt-20 mb-20">
                                 <div className="logo">
-                                <a href="/"><img src="assets/images/logo.png" alt="" /></a>
+                                    <a href="/"><img src="assets/images/logo.png" alt="" /></a>
                                 </div>
                             </div>
                             {/*Logo end*/}
@@ -115,9 +116,19 @@ class Header extends Component {
                             <div className="col-12 col-md-9 order-md-2 order-lg-3 col-lg-3">
                                 <div className="header-right-wrap">
                                     <ul>
-                                        <li><NavLink to="/login" activeStyle={{color: "white"}}>LOGIN</NavLink></li>
-                                        <li><NavLink to="/register" activeStyle={{color: "white"}}>REGISTER</NavLink></li>
-                                        {/* <li><a href="/register">REGISTER</a></li> */}
+                                        {/* <li><NavLink to="/login" activeStyle={{ color: "white" }}>LOGIN</NavLink></li>
+                                        <li><NavLink to="/register" activeStyle={{ color: "white" }}>REGISTER</NavLink></li> */}
+
+                                        {(
+                                            () => {
+                                                if (JSON.parse(localStorage.getItem('info'))) {
+                                                    return isLoggedIn;
+                                                }
+
+                                                else return isLoggedOut;
+                                            }
+                                        )()}
+
                                         <li className="header-search"><a className="header-search-toggle" href="#"><i className="icofont-search-2" /></a>
                                             <div className="header-search-form">
                                                 <form action="#">

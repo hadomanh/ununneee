@@ -50,7 +50,6 @@ function App() {
 
         <Router>
           <Header />
-
           <Switch>
             <Route exact path="/" >
               <Slider />
