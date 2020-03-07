@@ -44,232 +44,140 @@ class Profile extends Component {
 
         console.log(this.props.match.params.id);
         
+        console.log(this.props.match.params);
+
 
         return (
 
-            <div className="games-details-area section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-xs-45">
-
+            <div className="all-blog-area section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50">
                 <div className="container">
-                    <div className="row">
-                        <div className="col-lg-8">
+                    <div className="row row-25">
+                        <div className="col-lg-8 order-lg-2 order-1">
                             <div className="row">
                                 <div className="col-12">
-                                    <div className="game-image-gallery-wrap">
-                                        <div className="game-image-large">
-                                            <div className="game-image img-full">
-                                                <img src="assets/images/game/game-large/game-large1.jpg" alt="" />
-                                            </div>
-                                            <div className="game-image img-full">
-                                                <img src="assets/images/game/game-large/game-large3.jpg" alt="" />
-                                            </div>
-                                            <div className="game-image img-full">
-                                                <img src="assets/images/game/game-large/game-large2.jpg" alt="" />
-                                            </div>
-                                            <div className="game-image img-full">
-                                                <img src="assets/images/game/game-large/game-large2.jpg" alt="" />
-                                            </div>
+                                    {/*Single Blog Post Start*/}
+                                    <div className="single-blog-post mb-30">
+                                        <div className="blog-img">
+                                            <a href="single-blog.html"><img src="assets/images/blog/blog-large1.jpg" alt="" /></a>
                                         </div>
-                                        <div className="game-image-thumbs">
-                                            <div className="sm-image"><img src="assets/images/game/game-large/game-large1.jpg" alt="product image thumb" /></div>
-                                            <div className="sm-image"><img src="assets/images/game/game-small/game-small2.jpg" alt="product image thumb" /></div>
-                                            <div className="sm-image"><img src="assets/images/game/game-small/game-small1.jpg" alt="product image thumb" /></div>
-                                            <div className="sm-image"><img src="assets/images/game/game-small/game-small1.jpg" alt="product image thumb" /></div>
-                                        </div>
-                                        <div className="game-description mb-45">
-                                            <h3>{this.props.match.params.id}</h3>
-                                            <p><strong>Need for Sped</strong> rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally tances occur in which toil and pain can procure him some great pleasure pleasure rationally encounter sequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain itsuse it is pain, but because occasionally circumstances occur in which toil and pain can procure </p>
-                                            <p>Rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally tances occur in which toil and pain can procure him some great pleasure pleasure rationally encounte</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-12">
-                                    <div className="timelaine-wrapper mb-30">
-                                        <div className="single-timeline pb-30">
-                                            <h4>the story behiend the game</h4>
-                                            <p>Rationally encounter consequences that are extremely painful. Nor again is there anyone oves or pursues or desires to obtain pain of itself, because it is pain, but because sionally tances occur in which toil and pain can procure him some great pleasure pleasure </p>
-                                        </div>
-                                        <div className="single-timeline pb-30">
-                                            <h4>creative team</h4>
-                                            <p>Rationally encounter consequences that are extremely painful. Nor again is there anyone oves or pursues or desires to obtain pain of itself, because it is pain, but because sionally tances occur in which toil and pain can procure him some great pleasure pleasure </p>
-                                        </div>
-                                        <div className="single-timeline pb-30">
-                                            <h4>First Release</h4>
-                                            <p>Rationally encounter consequences that are extremely painful. Nor again is there anyone oves or pursues or desires to obtain pain of itself, because it is pain, but because sionally tances occur in which toil and pain can procure him some great pleasure pleasure </p>
-                                            <p>Rationally encounter consequences that are extremely painful. Nor again is there anyone oves or pursues or desires to obtain pain of itself, because it is pain</p>
-                                        </div>
-                                        <div className="single-timeline pb-30">
-                                            <h4>compitable for</h4>
-                                            <span>PC  -  XBOX  -  PS4</span>
-                                            <p>Rationally encounter consequences that are extremely painful. Nor again is there anyone oves or pursues or desires to obtain pain of itself, because it is pain, but because sionally tances occur in which toil and pain can procure him some great pleasure pleasure </p>
-                                        </div>
-                                        <div className="single-timeline pb-30">
-                                            <h4>PRICE AND DOWNLOAD</h4>
-                                            <span className="game-price">PRICE $49</span>
-                                            <a href="checkout.html">CLICK HERE FOR DOWNLOAD</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-12">
-                                    <div className="ratting-wrap mb-40">
-                                        <h3>ratings</h3>
-                                        <div className="rating-area">
-                                            <div className="total-rating">
-                                                <h2>4.82</h2>
-                                                <span>(4.8 out of 5)</span>
-                                            </div>
-                                            <div className="rating-review">
-                                                <div className="single-rating">
-                                                    <div className="rating-star">
-                                                        <span>5</span>
-                                                        <i className="fa fa-star" />
-                                                    </div>
-                                                    <div className="rating-progress">
-                                                        <div className="progress">
-                                                            <div className="progress-bar wow fadeInLeft" role="progressbar" style={{ width: '90%' }} aria-valuenow={90} aria-valuemin={0} aria-valuemax={100} data-wow-duration="1.5s" data-wow-delay="1.2s" />
-                                                        </div>
-                                                    </div>
-                                                    <div className="rating-count">
-                                                        <span>980</span>
-                                                    </div>
-                                                </div>
-                                                <div className="single-rating">
-                                                    <div className="rating-star">
-                                                        <span>4</span>
-                                                        <i className="fa fa-star" />
-                                                    </div>
-                                                    <div className="rating-progress">
-                                                        <div className="progress">
-                                                            <div className="progress-bar wow fadeInLeft" role="progressbar" style={{ width: '70%' }} aria-valuenow={70} aria-valuemin={0} aria-valuemax={100} data-wow-duration="1.5s" data-wow-delay="1.2s" />
-                                                        </div>
-                                                    </div>
-                                                    <div className="rating-count">
-                                                        <span>280</span>
-                                                    </div>
-                                                </div>
-                                                <div className="single-rating">
-                                                    <div className="rating-star">
-                                                        <span>3</span>
-                                                        <i className="fa fa-star" />
-                                                    </div>
-                                                    <div className="rating-progress">
-                                                        <div className="progress">
-                                                            <div className="progress-bar wow fadeInLeft" role="progressbar" style={{ width: '50%' }} aria-valuenow={50} aria-valuemin={0} aria-valuemax={100} data-wow-duration="1.5s" data-wow-delay="1.2s" />
-                                                        </div>
-                                                    </div>
-                                                    <div className="rating-count">
-                                                        <span>89</span>
-                                                    </div>
-                                                </div>
-                                                <div className="single-rating">
-                                                    <div className="rating-star">
-                                                        <span>2</span>
-                                                        <i className="fa fa-star" />
-                                                    </div>
-                                                    <div className="rating-progress">
-                                                        <div className="progress">
-                                                            <div className="progress-bar wow fadeInLeft" role="progressbar" style={{ width: '30%' }} aria-valuenow={30} aria-valuemin={0} aria-valuemax={100} data-wow-duration="1.5s" data-wow-delay="1.2s" />
-                                                        </div>
-                                                    </div>
-                                                    <div className="rating-count">
-                                                        <span>25</span>
-                                                    </div>
-                                                </div>
-                                                <div className="single-rating">
-                                                    <div className="rating-star">
-                                                        <span>1</span>
-                                                        <i className="fa fa-star" />
-                                                    </div>
-                                                    <div className="rating-progress">
-                                                        <div className="progress">
-                                                            <div className="progress-bar wow fadeInLeft" role="progressbar" style={{ width: '10%' }} aria-valuenow={10} aria-valuemin={0} aria-valuemax={100} data-wow-duration="1.5s" data-wow-delay="1.2s" />
-                                                        </div>
-                                                    </div>
-                                                    <div className="rating-count">
-                                                        <span>25</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-12">
-                                    <div className="review-wrap">
-                                        <h3>reviews(120)</h3>
-                                        {/*Single Review Start*/}
-                                        <div className="single-review mb-30">
-                                            <h4>Best action game play ever</h4>
-                                            <div className="ratting">
-                                                <i className="fa fa-star" />
-                                                <i className="fa fa-star" />
-                                                <i className="fa fa-star" />
-                                                <i className="fa fa-star" />
-                                                <i className="fa fa-star-half-o" />
-                                            </div>
-                                            <p>The Witcher 3 is the best action game that i play ever. encounter consequences that are mely painful. Nor again is there me anyone who loves or pursues or desires take a trivial meaning less sexample, which of us ever undertakes laborious physical exercise.</p>
-                                            <div className="review-name-action">
-                                                <a href="#">Adam Smith</a>
-                                                <ul>
-                                                    <li><a href="#"><i className="fa fa-thumbs-o-up" />425</a></li>
-                                                    <li><a href="#"><i className="fa fa-thumbs-o-down" />65</a></li>
+                                        <div className="blog-content">
+                                            <h3><a href="single-blog.html">hidden secret of the elder scroll</a></h3>
+                                            <p>Some of hiden secret of the  Elder Scroll is the most popular are ames that your can Latest Mega 2019 games offer you ioous league and also alow you to make smile and enjoy the game maek it easy</p>
+                                            <div className="blog-bottom">
+                                                <ul className="meta meta-border-bottom">
+                                                    <li><a href="#">Smith</a></li>
+                                                    <li>15 Devember, 2018 </li>
+                                                    <li><a href="#">25 Comments</a></li>
                                                 </ul>
+                                                <a className="read-btn" href="single-blog.html">READ NOW <i className="fa fa-caret-right" /></a>
                                             </div>
                                         </div>
-                                        {/*Single Review End*/}
-                                        {/*Single Review Start*/}
-                                        <div className="single-review mb-30">
-                                            <h4>Really love this game</h4>
-                                            <div className="ratting">
-                                                <i className="fa fa-star" />
-                                                <i className="fa fa-star" />
-                                                <i className="fa fa-star" />
-                                                <i className="fa fa-star" />
-                                                <i className="fa fa-star-half-o" />
-                                            </div>
-                                            <p>The Witcher 3 is the best action game that i play ever. encounter consequences that are mely painful. Nor again is there me anyone who loves or pursues or desires take a trivial meaning less sexample, which of us ever undertakes laborious physical exercise.</p>
-                                            <div className="review-name-action">
-                                                <a href="#">Thomas Morgan</a>
-                                                <ul>
-                                                    <li><a href="#"><i className="fa fa-thumbs-o-up" />425</a></li>
-                                                    <li><a href="#"><i className="fa fa-thumbs-o-down" />65</a></li>
+                                    </div>
+                                    {/*Single Blog Post End*/}
+                                </div>
+                                <div className="col-12">
+                                    {/*Single Blog Post Start*/}
+                                    <div className="single-blog-post mb-30">
+                                        <div className="blog-video">
+                                            <a href="single-blog.html"><img src="assets/images/blog/blog-large2.jpg" alt="" /></a>
+                                            <a className="video-btn" href><i className="icofont-play-alt-2" /></a>
+                                        </div>
+                                        <div className="blog-content">
+                                            <h3><a href="single-blog.html">life has no limited speed, but it’s need for speed</a></h3>
+                                            <p>Some of hiden secret of the  Elder Scroll is the most popular are ames that your can Latest Mega 2019 games offer you ioous league and also alow you to make smile and enjoy the game maek it easy</p>
+                                            <div className="blog-bottom">
+                                                <ul className="meta meta-border-bottom">
+                                                    <li><a href="#">Nicolus</a></li>
+                                                    <li>10 Devember, 2018 </li>
+                                                    <li><a href="#">689 Comments</a></li>
                                                 </ul>
+                                                <a className="read-btn" href="single-blog.html">READ NOW <i className="fa fa-caret-right" /></a>
                                             </div>
                                         </div>
-                                        {/*Single Review End*/}
-                                        <div className="reply-btn">
-                                            <a href="#">view more <i className="icofont-long-arrow-right" /></a>
+                                    </div>
+                                    {/*Single Blog Post End*/}
+                                </div>
+                                <div className="col-12">
+                                    {/*Single Blog Post Start*/}
+                                    <div className="single-blog-post mb-30">
+                                        <div className="blog-img">
+                                            <a href="single-blog.html"><img src="assets/images/blog/blog-large3.jpg" alt="" /></a>
                                         </div>
+                                        <div className="blog-content">
+                                            <h3><a href="single-blog.html">secret code, new adventure for the witcher 3</a></h3>
+                                            <p>Some of hiden secret of the  Elder Scroll is the most popular are ames that your can Latest Mega 2019 games offer you ioous league and also alow you to make smile and enjoy the game maek it easy</p>
+                                            <div className="blog-bottom">
+                                                <ul className="meta meta-border-bottom">
+                                                    <li><a href="#">Carlos</a></li>
+                                                    <li>13 Devember, 2018 </li>
+                                                    <li><a href="#">399 Comments</a></li>
+                                                </ul>
+                                                <a className="read-btn" href="single-blog.html">READ NOW <i className="fa fa-caret-right" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/*Single Blog Post End*/}
+                                </div>
+                                <div className="col-12">
+                                    {/*Single Blog Post Start*/}
+                                    <div className="single-blog-post mb-30">
+                                        <div className="blog-img-slider">
+                                            <a href="single-blog.html"><img src="assets/images/blog/blog-large4.jpg" alt="" /></a>
+                                            <a href="single-blog.html"><img src="assets/images/blog/blog-large2.jpg" alt="" /></a>
+                                            <a href="single-blog.html"><img src="assets/images/blog/blog-large3.jpg" alt="" /></a>
+                                            <a href="single-blog.html"><img src="assets/images/blog/blog-large1.jpg" alt="" /></a>
+                                        </div>
+                                        <div className="blog-content">
+                                            <h3><a href="single-blog.html">life has no limited speed, but it’s need for speed</a></h3>
+                                            <p>Some of hiden secret of the  Elder Scroll is the most popular are ames that your can Latest Mega 2019 games offer you ioous league and also alow you to make smile and enjoy the game maek it easy</p>
+                                            <div className="blog-bottom">
+                                                <ul className="meta meta-border-bottom">
+                                                    <li><a href="#">Albert</a></li>
+                                                    <li>08 Devember, 2018 </li>
+                                                    <li><a href="#">125 Comments</a></li>
+                                                </ul>
+                                                <a className="read-btn" href="single-blog.html">READ NOW <i className="fa fa-caret-right" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/*Single Blog Post End*/}
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="blog-pagination text-center">
+                                        <ul className="page-pagination">
+                                            <li><a href="#"><i className="icofont-long-arrow-left" /></a></li>
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">4</a></li>
+                                            <li><a href="#">5</a></li>
+                                            <li><a href="#">6</a></li>
+                                            <li><a href="#"><i className="icofont-long-arrow-right" /></a></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4">
-                            <div className="sidebar-area mt-sm-50 mt-xs-50">
+                        <div className="col-lg-4 order-lg-1 order-2">
+                            <div className="sidebar-area mt-sm-55 mt-xs-50">
                                 {/*Single Sidebar Widget Start*/}
                                 <div className="single-sidebar-widget mb-45">
-                                    <h3>featured games</h3>
+                                    <h3>Tien Anh Nguyen</h3>
                                     <div className="single-featured-game mb-20">
-                                        <div className="game-img">
-                                            <a href="#"><img src="assets/images/banner/sidebar-banner1.jpg" alt="" /></a>
-                                            <a className="game-title" href="#">the killer</a>
-                                        </div>
-                                    </div>
-                                    <div className="single-featured-game mb-20">
-                                        <div className="game-img">
-                                            <a href="#"><img src="assets/images/banner/sidebar-banner2.jpg" alt="" /></a>
-                                            <a className="game-title" href="#">muscle cars</a>
+                                        <div className="game-img" style={{ height: "320px", width: "320px" }} >
+                                            <a href="#">
+                                                <img src="https://scontent-xsp1-2.xx.fbcdn.net/v/t1.0-9/p960x960/64511272_1164557907061709_2044084333278396416_o.jpg?_nc_cat=103&_nc_sid=7aed08&_nc_ohc=N1IJXg4xkGIAX_1X2z9&_nc_ht=scontent-xsp1-2.xx&_nc_tp=6&oh=1571776a673047b6d184609bc51de0ff&oe=5E967D52" alt="" /></a>
+
+                                            <a className="game-title" href="#">24/05/1999</a>
                                         </div>
                                     </div>
                                 </div>
                                 {/*Single Sidebar Widget End*/}
                                 {/*Single Sidebar Widget Start*/}
                                 <div className="single-sidebar-widget mb-45">
-                                    <h3>follow us</h3>
+                                    <h3>follow me</h3>
                                     <div className="sidebar-social">
                                         <ul>
                                             <li><a className="facebook" href="#"><i className="icofont-facebook" /></a></li>
@@ -280,15 +188,33 @@ class Profile extends Component {
                                     </div>
                                 </div>
                                 {/*Single Sidebar Widget End*/}
+
                                 {/*Single Sidebar Widget Start*/}
                                 <div className="single-sidebar-widget mb-45">
-                                    <h3>popular/recomended</h3>
+                                    <h3>Setting</h3>
+
+                                    <div className="btn btn-group">
+                                        <div className="row">
+                                            <div className="btn btn-danger col-12">Upload picture</div>
+                                            <div className="btn btn-outline-danger col-6 mt-2">Follow</div>
+                                            <div className="btn btn-outline-danger col mt-2 ml-2">Chat</div>
+                                            <div className="btn btn-outline-danger col-6 mt-2">Donate</div>
+                                            <div className="btn btn-outline-danger col mt-2 ml-2">About</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                {/*Single Sidebar Widget End*/}
+
+                                {/*Single Sidebar Widget Start*/}
+                                <div className="single-sidebar-widget mb-45">
+                                    <h3>games</h3>
                                     <div className="popular-game mb-20">
                                         <div className="game-img">
                                             <a href="#"><img src="assets/images/banner/sidebar-banner3.jpg" alt="" /></a>
                                         </div>
                                         <div className="game-content">
-                                            <h3><a href="#">Splinter cell</a></h3>
+                                            <h3><a href="#">DotA 2</a></h3>
                                             <span>pc/xbox/ps4</span>
                                         </div>
                                     </div>
@@ -297,7 +223,7 @@ class Profile extends Component {
                                             <a href="#"><img src="assets/images/banner/sidebar-banner4.jpg" alt="" /></a>
                                         </div>
                                         <div className="game-content">
-                                            <h3><a href="#">battle field 4</a></h3>
+                                            <h3><a href="#">Counter Strike: Global Offensive</a></h3>
                                             <span>pc/xbox/ps4</span>
                                         </div>
                                     </div>
@@ -348,16 +274,10 @@ class Profile extends Component {
                                     </div>
                                 </div>
                                 {/*Single Sidebar Widget End*/}
-                                {/*Single Sidebar Widget Start*/}
-                                <div className="single-sidebar-widget mb-45">
-                                    <div className="sidebar-banner">
-                                        <a href="#"><img src="assets/images/banner/banner2.jpg" alt="" /></a>
-                                    </div>
-                                </div>
-                                {/*Single Sidebar Widget End*/}
+
                                 {/*Single Sidebar Widget Start*/}
                                 <div className="single-sidebar-widget">
-                                    <h3>follow us</h3>
+                                    <h3>me on instagram:</h3>
                                     <div className="sidebar-instagram">
                                         <ul>
                                             <li><a href="#"><img src="assets/images/instagram/instagram1.jpg" alt="" /></a></li>
