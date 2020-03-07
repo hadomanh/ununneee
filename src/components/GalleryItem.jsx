@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {
+    Link
+  } from "react-router-dom";
 
 class GalleryItem extends Component {
 
@@ -6,10 +9,10 @@ class GalleryItem extends Component {
         return (
             <div className="single-game mb-50">
                 <div className="game-img">
-                    <a href="/profile"><img src={this.props.imgURL} alt="" /></a>
+                    <Link to={"/profile/" + this.props.id} ><img src={this.props.imgURL} alt="" /></Link>
                 </div>
                 <div className="game-content">
-                    <h4><a href="/profile">{this.props.name}</a></h4>
+                    <h4><Link to={"/profile/" + this.props.id} >{this.props.name}</Link></h4>
                     <span>pc/xbox/ps4</span>
                 </div>
             </div>
