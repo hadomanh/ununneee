@@ -107,10 +107,10 @@ class Login extends Component {
                                 <h3>Login to your account</h3>
                                 <p>Gilbard provide how all this mistaken idea of denouncing pleasure and sing pain born an will give you a complete account of the system, and expound</p>
                                 {/* Login Form */}
-                                <form action="#">
+                                <form onSubmit={this.handleFormSubmit}>
                                     <div className="row">
-                                        <div className="col-12 mb-30"><input type="text" placeholder="Type your username or email address" /></div>
-                                        <div className="col-12 mb-20"><input type="password" placeholder="Enter your passward" /></div>
+                                        <div className="col-12 mb-30"><input name='email' type="email" placeholder="Type your username or email address" onChange={this.handleChange} /></div>
+                                        <div className="col-12 mb-20"><input name='pass' type="password" placeholder="Enter your passward" onChange={this.handleChange} /></div>
                                         <div className="col-12 mb-15">
                                             <input type="checkbox" id="remember_me" />
                                             <label htmlFor="remember_me">Remember me</label>
