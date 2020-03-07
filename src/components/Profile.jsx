@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     useParams
 } from "react-router-dom";
-
+const Axios=require('axios');
 class Profile extends Component {
 
     componentDidMount() {
@@ -19,6 +19,7 @@ class Profile extends Component {
                 document.body.appendChild(script);
                 document.body.removeChild(script);
             })
+
         };
 
         loadScript("assets/js/vendor/modernizr-2.8.3.min.js")
@@ -26,12 +27,22 @@ class Profile extends Component {
         loadScript("assets/js/popper.min.js")
         loadScript("assets/js/bootstrap.min.js")
         loadScript("assets/js/plugins.js")
-        loadScript("assets/js/main.js")
+        loadScript("assets/js/main.js");
+        Axios({
+            method:'get',
+            url:`http://localhost:5000/users/get-fighter-by-id/:${this.props.match.params.id}`,
+        })
+        .then(function(response){
+            console.log('user lay ra ne',response);
+        })
+        .catch(function(error){
+            console.log('error:',error);
+        })
     }
 
     render() {
 
-        console.log(this.props.match.params);
+        console.log(this.props.match.params.id);
         
 
         return (

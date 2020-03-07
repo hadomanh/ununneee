@@ -6,8 +6,8 @@ route.get('/', (req, res) => {
 })
 
 
-route.get('/get-fighter-by-id',(req,res)=>{
-    console.log('fightId ne',req.query.fighterId);
+route.get('/get-fighter-by-id/:id',(req,res)=>{
+    console.log('fightId ne',req.params.id);
 })
 
 
