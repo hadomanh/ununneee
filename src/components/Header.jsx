@@ -41,12 +41,6 @@ class Header extends Component {
 
     render() {
 
-        var isLoggedIn = [];
-        if (JSON.parse(localStorage.getItem('info'))) {
-            isLoggedIn.push(<li><NavLink to="/" activeStyle={{ color: "white" }}>{JSON.parse(localStorage.getItem('info')).name}</NavLink></li>);
-            isLoggedIn.push(<li><NavLink to="/" activeStyle={{ color: "white" }} onClick={this.logout}>LOGOUT</NavLink></li>);
-        }
-
         var isLoggedOut = [];
         isLoggedOut.push(<li><NavLink to="/login" activeStyle={{ color: "white" }}>LOGIN</NavLink></li>);
         isLoggedOut.push(<li><NavLink to="/register" activeStyle={{ color: "white" }}>REGISTER</NavLink></li>);
@@ -84,7 +78,7 @@ class Header extends Component {
                                                 <li><a href="games-details.html">Games Details</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="video.html">Videos</a></li>
+                                        <li><a href="video.html">Highlights</a></li>
                                         <li><a href="forum.html">Forums</a>
                                             <ul className="sub-menu">
                                                 <li><a href="forum.html">Forums</a></li>
@@ -107,7 +101,27 @@ class Header extends Component {
                                                 <li><a href="register.html">REGISTER</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="contact.html">Contact</a></li>
+
+                                        {(
+                                            () => {
+                                                if (JSON.parse(localStorage.getItem('info')))
+                                                    return (
+                                                        <li>
+                                                            <div className="ava-img mt-3">
+                                                                <img src="assets/images/game/game2.jpg" />
+                                                            </div>
+                                                            <ul className="sub-menu">
+                                                                <li><a href="#">buy premium</a></li>
+                                                                <li><a href="#">setting</a></li>
+                                                                <hr />
+                                                                <li><a href="#">Logout</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    )
+                                            }
+                                        )()}
+
+
                                     </ul>
                                 </nav>
                             </div>
@@ -116,18 +130,21 @@ class Header extends Component {
                             <div className="col-12 col-md-9 order-md-2 order-lg-3 col-lg-3">
                                 <div className="header-right-wrap">
                                     <ul>
-                                        {/* <li><NavLink to="/login" activeStyle={{ color: "white" }}>LOGIN</NavLink></li>
-                                        <li><NavLink to="/register" activeStyle={{ color: "white" }}>REGISTER</NavLink></li> */}
 
                                         {(
                                             () => {
-                                                if (JSON.parse(localStorage.getItem('info'))) {
-                                                    return isLoggedIn;
-                                                }
-
+                                                if (JSON.parse(localStorage.getItem('info')))
+                                                    return (
+                                                        <li>
+                                                            <a href="#">LOGOUT</a>
+                                                        </li>
+                                                    );
                                                 else return isLoggedOut;
+                                                
                                             }
                                         )()}
+
+
 
                                         <li className="header-search"><a className="header-search-toggle" href="#"><i className="icofont-search-2" /></a>
                                             <div className="header-search-form">
@@ -151,7 +168,7 @@ class Header extends Component {
                         {/*Mobile Menu end*/}
                     </div>
                 </div>
-            </header>
+            </header >
 
         );
     }

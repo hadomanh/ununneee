@@ -127,18 +127,18 @@ function App() {
             </Route>
 
             <Route path="/login">
-              <Banner path="login" />
+              <Banner detail="login" />
               <Login />
             </Route>
 
             <Route path="/register">
-              <Banner path="register" />
+              <Banner detail="register" />
               <Register />
             </Route>
 
             <Route path="/profile">
-              <Banner path="profile" />
-              <Profile/>
+              <Banner detail="profile" />
+              <Route path="/profile/:id" component={Profile}/>
             </Route>
 
           </Switch>
