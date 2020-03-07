@@ -1,12 +1,43 @@
 import React, { Component } from 'react';
+import {
+    useParams
+} from "react-router-dom";
 
 class Profile extends Component {
 
+    componentDidMount() {
+        function loadScript(src) {
+            return new Promise(function (resolve, reject) {
+                var script = document.createElement('script');
+                script.src = src;
+                script.addEventListener('load', function () {
+                    resolve();
+                });
+                script.addEventListener('error', function (e) {
+                    reject(e);
+                });
+                document.body.appendChild(script);
+                document.body.removeChild(script);
+            })
+        };
 
+        loadScript("assets/js/vendor/modernizr-2.8.3.min.js")
+        loadScript("assets/js/vendor/jquery-1.12.4.min.js")
+        loadScript("assets/js/popper.min.js")
+        loadScript("assets/js/bootstrap.min.js")
+        loadScript("assets/js/plugins.js")
+        loadScript("assets/js/main.js")
+    }
 
     render() {
+
+        console.log(this.props.match.params);
+        
+
         return (
+
             <div className="games-details-area section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50 pb-xs-45">
+
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8">
@@ -28,13 +59,13 @@ class Profile extends Component {
                                             </div>
                                         </div>
                                         <div className="game-image-thumbs">
-                                            <div className="sm-image"><img src="assets/images/game/game-small/game-small3.jpg" alt="product image thumb" /></div>
+                                            <div className="sm-image"><img src="assets/images/game/game-large/game-large1.jpg" alt="product image thumb" /></div>
                                             <div className="sm-image"><img src="assets/images/game/game-small/game-small2.jpg" alt="product image thumb" /></div>
                                             <div className="sm-image"><img src="assets/images/game/game-small/game-small1.jpg" alt="product image thumb" /></div>
                                             <div className="sm-image"><img src="assets/images/game/game-small/game-small1.jpg" alt="product image thumb" /></div>
                                         </div>
                                         <div className="game-description mb-45">
-                                            <h3>the witchrer 3 reloded</h3>
+                                            <h3>{this.props.match.params.id}</h3>
                                             <p><strong>Need for Sped</strong> rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally tances occur in which toil and pain can procure him some great pleasure pleasure rationally encounter sequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain itsuse it is pain, but because occasionally circumstances occur in which toil and pain can procure </p>
                                             <p>Rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally tances occur in which toil and pain can procure him some great pleasure pleasure rationally encounte</p>
                                         </div>

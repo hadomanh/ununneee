@@ -12,7 +12,7 @@ class Banner extends Component {
                                 <a className="df-btn" href="#">Buy now</a>
                                 <ul className="page-breadcrumb">
                                     <li>Home</li>
-        <li>{this.props.path}</li>
+                                    <li>{this.props.detail}</li>
                                 </ul>
                             </div>
                         </div>

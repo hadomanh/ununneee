@@ -3345,7 +3345,8 @@ header.header.header-static {
   .game-image-gallery-wrap .game-image-thumbs .sm-image {
     padding: 0 5px; }
     .game-image-gallery-wrap .game-image-thumbs .sm-image img {
-      width: 100%; }
+      width: 100%;      
+}
 
 .game-image-gallery-wrap .game-description {
   margin-top: 30px; }

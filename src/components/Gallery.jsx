@@ -17,24 +17,24 @@ class Gallery extends Component {
                     </div>
                     <div className="row game-slide">
                         <div className="col-4">
-                            <GalleryItem name="1" imgURL="assets/images/game/game1.jpg"/>
-                            <GalleryItem name="2" imgURL="assets/images/game/game2.jpg"/>
+                            <GalleryItem id="1" name="111" imgURL="assets/images/game/game1.jpg"/>
+                            <GalleryItem id="2" name="222" imgURL="assets/images/game/game2.jpg"/>
                         </div>
                         <div className="col-4">
-                            <GalleryItem name="3" imgURL="assets/images/game/game3.jpg"/>
-                            <GalleryItem name="4" imgURL="assets/images/game/game4.jpg"/>
+                            <GalleryItem id="3" name="333" imgURL="assets/images/game/game3.jpg"/>
+                            <GalleryItem id="4" name="444" imgURL="assets/images/game/game4.jpg"/>
                         </div>
                         <div className="col-4">
-                            <GalleryItem name="5" imgURL="assets/images/game/game5.jpg"/>
-                            <GalleryItem name="6" imgURL="assets/images/game/game6.jpg"/>
+                            <GalleryItem id="5" name="555" imgURL="assets/images/game/game5.jpg"/>
+                            <GalleryItem id="6" name="666" imgURL="assets/images/game/game6.jpg"/>
                         </div>
                         <div className="col-4">
-                            <GalleryItem name="7" imgURL="assets/images/game/game7.jpg"/>
-                            <GalleryItem name="8" imgURL="assets/images/game/game8.jpg"/>
+                            <GalleryItem id="7" name="777" imgURL="assets/images/game/game7.jpg"/>
+                            <GalleryItem id="8" name="888" imgURL="assets/images/game/game8.jpg"/>
                         </div>
                         <div className="col-4">
-                            <GalleryItem name="9" imgURL="assets/images/game/game9.jpg"/>
-                            <GalleryItem name="10" imgURL="assets/images/game/game10.jpg"/>
+                            <GalleryItem id="9" name="999" imgURL="assets/images/game/game9.jpg"/>
+                            <GalleryItem id="10" name="1000" imgURL="assets/images/game/game10.jpg"/>
                         </div>
                         </div>
                 </div>
