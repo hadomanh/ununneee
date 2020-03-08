@@ -37,12 +37,14 @@ route.post('/verify', (req, res) => {
                         email: data.email,
                     };
                     console.log(req.session);
+                    console.log('hello id ne',data.id);
                     res.status(200).json({
                         success: true,
                         message: "Login Success",
                         data: {
                             email: data.email,
-                            name: data.name
+                            name: data.name,
+                            id:data.id,
                         }
                     })
                 }
