@@ -1,17 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Banner from './components/Banner';
-import ClientLogo from './components/ClientLogo';
-import AboutUs from './components/AboutUs';
-import LiveStream from './components/LiveStream';
-import Price from './components/Price';
-import Lastest from './components/Lastest';
 import Gallery from './components/Gallery';
-import Upcoming from './components/Upcoming';
 import Register from './components/Register';
 import {
   BrowserRouter as Router,
@@ -19,9 +12,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Test from './components/Test';
 import Login from './components/Login';
-import Fighter from './components/Fighter';
 import Slider from './components/Slider';
 import Featured from './components/Featured';
 import Newsletter from './components/Newsletter';
