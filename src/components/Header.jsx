@@ -110,7 +110,7 @@ class Header extends Component {
                                                     return (
                                                         <li>
                                                             <div className="ava-img mt-3">
-                                                                <img src="assets/images/game/game2.jpg" />
+                                                                <img src="assets/images/game/game9.jpg" />
                                                             </div>
                                                             <ul className="sub-menu">
                                                                 <li><a href="#">buy premium</a></li>
@@ -137,8 +137,8 @@ class Header extends Component {
                                             () => {
                                                 if (JSON.parse(localStorage.getItem('info')))
                                                     return (
-                                                        <li>
-                                                            <a href="/" onClick={this.logout}>LOGOUT</a>
+                                                        <li onClick={this.logout()}>
+                                                            <div>LOGOUT</div>
                                                         </li>
                                                     );
                                                 else return isLoggedOut;
