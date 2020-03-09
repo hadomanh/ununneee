@@ -40,12 +40,11 @@ class Header extends Component {
 
 
     render() {
-        const email=JSON.parse(localStorage.getItem('info')).email.split('@')[0];
-        console.log('aray',email);
+
         var isLoggedOut = [];
         isLoggedOut.push(<li><NavLink to="/login" activeStyle={{ color: "white" }}>LOGIN</NavLink></li>);
         isLoggedOut.push(<li><NavLink to="/register" activeStyle={{ color: "white" }}>REGISTER</NavLink></li>);
-        console.log('info',JSON.parse(localStorage.getItem('info')).email);
+
         return (
             <header className="header header-static bg-black header-sticky">
                 <div className="default-header menu-right">
@@ -87,7 +86,7 @@ class Header extends Component {
                                                 <li><a href="forum-post.html">Forums Post</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href={'/profile/'+email} >Profile</a></li>
+                                        <li><a href={'/profile/'} >Profile</a></li>
                                         <li><a href="#">Pages</a>
                                             <ul className="sub-menu">
                                                 <li><a href="blog.html">Blog</a></li>
@@ -116,7 +115,7 @@ class Header extends Component {
                                                                 <li><a href="#">buy premium</a></li>
                                                                 <li><a href="#">setting</a></li>
                                                                 <hr />
-                                                                <li><a href="/" onClick={this.logout}>Logout</a></li>
+                                                                <li><a href="/" >Logout</a></li>
                                                             </ul>
                                                         </li>
                                                     )
@@ -137,7 +136,7 @@ class Header extends Component {
                                             () => {
                                                 if (JSON.parse(localStorage.getItem('info')))
                                                     return (
-                                                        <li onClick={this.logout()}>
+                                                        <li onClick={()=>this.logout()}>
                                                             <div>LOGOUT</div>
                                                         </li>
                                                     );

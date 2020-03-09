@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     useParams
 } from "react-router-dom";
-const Axios=require('axios');
+import axios from 'axios';
 import SideBar from './SideBar';
 import Blog from './Blog';
 import SocialProfile from './SocialProfile';
@@ -38,7 +38,7 @@ class Profile extends Component {
         loadScript("assets/js/bootstrap.min.js")
         loadScript("assets/js/plugins.js")
         loadScript("assets/js/main.js");
-        Axios({
+        axios({
             method:'get',
             url:`http://localhost:5000/users/get-fighter-by-id/:${this.props.match.params.id}`,
         })

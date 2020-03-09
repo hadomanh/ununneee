@@ -1,10 +1,36 @@
 const route = require('express').Router();
 const userModel = require('./user.schema');
 const bcryptjs= require('bcryptjs');
+const session = require('express-session');
+const cors = require('cors');
+
+
+
+route.use(cors({
+    origin: "http://localhost:3000", // allow to server to accept request from different origin
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true // allow session cookie from browser to pass through
+})
+);
+route.use(session({
+    secret: 'keyboard cat',
+    // resave: true,
+    // saveUninitialized: false,
+    // cookie: { secure: true }
+}));
 route.get('/', (req, res) => {
     console.log('session ne',req.session);
+    res.status(500).json({
+        success: true,
+    });
 })
 
+
+
+route.get("/test",(req,res)=>{
+    console.log('session ne',req.session);
+    res.send(req.session);
+})
 
 route.get('/get-fighter-by-id/:id',(req,res)=>{
     console.log('fightId ne',req.params.id);
@@ -36,8 +62,8 @@ route.post('/verify', (req, res) => {
                     req.session.currentUser = {
                         email: data.email,
                     };
+                    
                     console.log(req.session);
-                    console.log('hello id ne',data.id);
                     res.status(200).json({
                         success: true,
                         message: "Login Success",

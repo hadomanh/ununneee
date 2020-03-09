@@ -23,6 +23,7 @@ class Register extends Component {
         this.setState({
             [event.target.name]: event.target.value
         });
+        console.log(this.state.name);
     }
 
     handleFormSubmit = (event) => {
@@ -35,6 +36,7 @@ class Register extends Component {
             axios({
                 method: 'post',
                 url: 'http://localhost:5000/users',
+                withCredentials: true,
                 data: {
                     email: this.state.email,
                     password: this.state.password,
@@ -102,12 +104,12 @@ class Register extends Component {
                                 <h3>We will need for your registration</h3>
                                 <p>Gilbard provide how all this mistaken idea of denouncing pleasure and sing pain born an will give you a complete account of the system, and expound</p>
                                 {/* Login Form */}
-                                <form action="#">
+                                <form onSubmit={this.handleFormSubmit}>
                                     <div className="row">
-                                        <div className="col-12 mb-30"><input type="text" placeholder="Your name here" /></div>
-                                        <div className="col-12 mb-30"><input type="email" placeholder="Your email here" /></div>
-                                        <div className="col-12 mb-30"><input type="password" placeholder="Enter passward" /></div>
-                                        <div className="col-12 mb-30"><input type="password" placeholder="Conform password" /></div>
+                                        <div className="col-12 mb-30"><input name='name' type="text" placeholder="Your name here" onChange={this.handleChange} /></div>
+                                        <div className="col-12 mb-30"><input name='email' type="email" placeholder="Your email here" onChange={this.handleChange} /></div>
+                                        <div className="col-12 mb-30"><input name='password' type="password" placeholder="Enter passward" onChange={this.handleChange} /></div>
+                                        <div className="col-12 mb-30"><input name='repeatPassword' type="password" placeholder="Conform password" onChange={this.handleChange} /></div>
                                         <div className="col-12"><input type="submit" value="register" /></div>
                                     </div>
                                 </form>

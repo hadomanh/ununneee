@@ -43,6 +43,7 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
             secret: 'keyboard cat',
             resave: true,
             saveUninitialized: false,
+            // cookie: { secure: true }
         }));
 
         // initialize passport
@@ -53,7 +54,12 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
         // set up route
         server.use('/auth', authRoutes);
         server.use('/users', userRoutes);
-
+        server.get("/test", (req, res) => {
+            console.log('day nhe',req.session);
+            res.status(500).json({
+                success: true,
+            });
+        })
         server.listen(process.env.PORT || 5000, (err) => {
             if (err)
                 throw err;
