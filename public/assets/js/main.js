@@ -58,22 +58,22 @@ mainMenuNav.meanmenu({
     Sliders
 -----------------------------------*/
 // Hero Slider
-$('.hero-slider').slick({
-    infinite: true,
-    fade: true,
-    dots: false,
-    prevArrow: '<button class="slick-prev"><i class="icofont-long-arrow-left"></i>Pre</button>',
-    nextArrow: '<button class="slick-next">Next<i class="icofont-long-arrow-right"></i></button>',
-    responsive: [
-        {
-        breakpoint: 992,
-            settings: {
-                dots: false,
-                arrows: true,
-            }
-        },
-    ]
-});
+// $('.hero-slider').slick({
+//     infinite: true,
+//     fade: true,
+//     dots: false,
+//     prevArrow: '<button class="slick-prev"><i class="icofont-long-arrow-left"></i>Pre</button>',
+//     nextArrow: '<button class="slick-next">Next<i class="icofont-long-arrow-right"></i></button>',
+//     responsive: [
+//         {
+//         breakpoint: 992,
+//             settings: {
+//                 dots: false,
+//                 arrows: true,
+//             }
+//         },
+//     ]
+// });
 // Hero Slider Three
 $('.hero-slider-three').slick({
     infinite: true,
@@ -150,16 +150,16 @@ $('.testimonial-slider-content').slick({
     slidesToScroll: 1
 });
 // blog image Slider (Content)
-$('.blog-img-slider').slick({
-    infinite: true,
-    arrows: true,
-    fade: false,
-    dots: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    prevArrow: '<button class="slick-prev"><i class="fa fa-angle-left"></i></button>',
-    nextArrow: '<button class="slick-next"><i class="fa fa-angle-right"></i></button>'
-});
+// $('.blog-img-slider').slick({
+//     infinite: true,
+//     arrows: true,
+//     fade: false,
+//     dots: false,
+//     slidesToShow: 1,
+//     slidesToScroll: 1,
+//     prevArrow: '<button class="slick-prev"><i class="fa fa-angle-left"></i></button>',
+//     nextArrow: '<button class="slick-next"><i class="fa fa-angle-right"></i></button>'
+// });
 // Featured Slider
 $('.featured-slide').slick({
     infinite: true,
@@ -235,73 +235,75 @@ $('.upcoming-game-slider').slick({
     ]
 });
 // Game Slider
-$('.game-slide').slick({
-    arrows: true,
-    row: 2,
-    fade: false,
-    dots: false,
-    infinite: true,
-    autoplaySpeed: 1000,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    prevArrow: '<button class="slick-prev"><i class="fa fa-angle-left"></i></button>',
-    nextArrow: '<button class="slick-next"><i class="fa fa-angle-right"></i></button>',
-    responsive: [
-        {
-            breakpoint: 1199,
-            settings: {
-                slidesToShow: 2,
-            }
-        },
-        {
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 1,
-            }
-        },
-    ]
-});
-// Video Slider
-$('.video-slider-active').slick({
-    arrows: true,
-    autoplay: false,
-    dots: false,
-    autoplaySpeed: 800,
-    infinite: true,
-    centerMode: true,
-    centerPadding: '0',
-    slidesToShow: 3,
-    focusOnSelect: true,
-    prevArrow: '<button class="slick-prev"><i class="icofont-long-arrow-left"></i>Pre</button>',
-    nextArrow: '<button class="slick-next">Next<i class="icofont-long-arrow-right"></i></button>',
-    responsive: [
-        {
-            breakpoint: 1201,
-            settings: {
-                slidesToShow: 3,
-            }
-        },
-        {
-            breakpoint: 993,
-            settings: {
-                slidesToShow: 3,
-            }
-        },
-        {
-            breakpoint: 577,
-            settings: {
-                slidesToShow: 2,
-            }
-        },
-        {
-            breakpoint: 481,
-            settings: {
-                slidesToShow: 1,
-            }
-        },
-    ]
+// $('.game-slide').slick({
+//     arrows: true,
+//     row: 2,
+//     fade: false,
+//     dots: false,
+//     infinite: true,
+//     autoplaySpeed: 1000,
+//     slidesToShow: 3,
+//     slidesToScroll: 1,
+//     prevArrow: '<button class="slick-prev"><i class="fa fa-angle-left"></i></button>',
+//     nextArrow: '<button class="slick-next"><i class="fa fa-angle-right"></i></button>',
+//     responsive: [
+//         {
+//             breakpoint: 1199,
+//             settings: {
+//                 slidesToShow: 2,
+//             }
+//         },
+//         {
+//             breakpoint: 768,
+//             settings: {
+//                 slidesToShow: 1,
+//             }
+//         },
+//     ]
+// });
 
-});
+
+// Video Slider
+// $('.video-slider-active').slick({
+//     arrows: true,
+//     autoplay: false,
+//     dots: false,
+//     autoplaySpeed: 800,
+//     infinite: true,
+//     centerMode: true,
+//     centerPadding: '0',
+//     slidesToShow: 3,
+//     focusOnSelect: true,
+//     prevArrow: '<button class="slick-prev"><i class="icofont-long-arrow-left"></i>Pre</button>',
+//     nextArrow: '<button class="slick-next">Next<i class="icofont-long-arrow-right"></i></button>',
+//     responsive: [
+//         {
+//             breakpoint: 1201,
+//             settings: {
+//                 slidesToShow: 3,
+//             }
+//         },
+//         {
+//             breakpoint: 993,
+//             settings: {
+//                 slidesToShow: 3,
+//             }
+//         },
+//         {
+//             breakpoint: 577,
+//             settings: {
+//                 slidesToShow: 2,
+//             }
+//         },
+//         {
+//             breakpoint: 481,
+//             settings: {
+//                 slidesToShow: 1,
+//             }
+//         },
+//     ]
+
+// });
 
 
     
@@ -320,58 +322,58 @@ $('select').niceSelect();
 /*----------------------------------- 
     Game Tab Slider Active 
 --------------------------------------*/  
-$('.game-image-large').each(function () {
-    var $this = $(this);
-    var $thumb = $this.siblings('.game-image-thumbs');
-    $this.slick({
-        arrows: false,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: false,
-        autoplaySpeed: 5000,
-        dots: false,
-        infinite: true,
-        centerMode: false,
-        centerPadding: 0,
-        asNavFor: $thumb,
-    });
-});
-$('.game-image-thumbs').each(function () {
-    var $this = $(this);
-    var $details = $this.siblings('.game-image-large');
-    $this.slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: false,
-        autoplaySpeed: 5000,
-        dots: false,
-        infinite: true,
-        focusOnSelect: true,
-        centerMode: true,
-        centerPadding: 0,
-        arrows: false,
-        prevArrow: '<span class="slick-prev"><i class="fa fa-angle-left"></i></span>',
-        nextArrow: '<span class="slick-next"><i class="fa fa-angle-right"></i></span>',
-        asNavFor: $details,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {}
-            },
-            {
-                breakpoint: 600,
-                settings: {}
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 2,
-                }
-            }
-          ]
+// $('.game-image-large').each(function () {
+//     var $this = $(this);
+//     var $thumb = $this.siblings('.game-image-thumbs');
+//     $this.slick({
+//         arrows: false,
+//         slidesToShow: 1,
+//         slidesToScroll: 1,
+//         autoplay: false,
+//         autoplaySpeed: 5000,
+//         dots: false,
+//         infinite: true,
+//         centerMode: false,
+//         centerPadding: 0,
+//         asNavFor: $thumb,
+//     });
+// });
+// $('.game-image-thumbs').each(function () {
+//     var $this = $(this);
+//     var $details = $this.siblings('.game-image-large');
+//     $this.slick({
+//         slidesToShow: 3,
+//         slidesToScroll: 1,
+//         autoplay: false,
+//         autoplaySpeed: 5000,
+//         dots: false,
+//         infinite: true,
+//         focusOnSelect: true,
+//         centerMode: true,
+//         centerPadding: 0,
+//         arrows: false,
+//         prevArrow: '<span class="slick-prev"><i class="fa fa-angle-left"></i></span>',
+//         nextArrow: '<span class="slick-next"><i class="fa fa-angle-right"></i></span>',
+//         asNavFor: $details,
+//         responsive: [
+//             {
+//                 breakpoint: 1024,
+//                 settings: {}
+//             },
+//             {
+//                 breakpoint: 600,
+//                 settings: {}
+//             },
+//             {
+//                 breakpoint: 480,
+//                 settings: {
+//                     slidesToShow: 2,
+//                 }
+//             }
+//           ]
 
-    });
-}); 
+//     });
+// }); 
     
 // gallery Slider
 $('.gallery-slider-2-column').slick({

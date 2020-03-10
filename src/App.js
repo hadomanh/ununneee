@@ -18,6 +18,7 @@ import Featured from './components/Featured';
 import Newsletter from './components/Newsletter';
 import Profile from './components/Profile';
 import Game from './components/Game';
+import BannerSlider from './components/BannerSlider';
 
 
 function App() {
@@ -41,80 +42,13 @@ function App() {
 
         <Router>
           <Header />
+
           <Switch>
             <Route exact path="/" >
-              <Slider />
+              <BannerSlider/>
               <Featured />
               <Gallery />
-
-              {/*Video section start*/}
-              <div className="video-section section pb-135 pb-lg-115 pb-md-105 pb-sm-95 pb-xs-85">
-                <div className="container-fluid p-0">
-                  <div className="row no-gutters align-items-end">
-                    <div className="col-12">
-                      <div className="video-slider-active">
-                        <div className="single-video">
-                          <div className="video-img video-img-2">
-                            <img src="assets/images/video/video-front1.jpg" alt="" />
-                            <div className="video-content content-center">
-                              <h3>The Magician 3</h3>
-                              <a className="video-popup" href="https://www.youtube.com/watch?v=BjiaMBk6rHk"><i className="icofont-play-alt-2" /> view demo</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="single-video">
-                          <div className="video-img video-img-2">
-                            <img src="assets/images/video/video-front3.jpg" alt="" />
-                            <div className="video-content content-center">
-                              <h3>The Magician 3</h3>
-                              <a className="video-popup" href="https://www.youtube.com/watch?v=BjiaMBk6rHk"><i className="icofont-play-alt-2" /> view demo</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="single-video">
-                          <div className="video-img video-img-2">
-                            <img src="assets/images/video/video-front2.jpg" alt="" />
-                            <div className="video-content content-center">
-                              <h3>The Magician 3</h3>
-                              <a className="video-popup" href="https://www.youtube.com/watch?v=BjiaMBk6rHk"><i className="icofont-play-alt-2" /> view demo</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="single-video">
-                          <div className="video-img video-img-2">
-                            <img src="assets/images/video/video-front4.jpg" alt="" />
-                            <div className="video-content content-center">
-                              <h3>The Magician 3</h3>
-                              <a className="video-popup" href="https://www.youtube.com/watch?v=BjiaMBk6rHk"><i className="icofont-play-alt-2" /> view demo</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="single-video">
-                          <div className="video-img video-img-2">
-                            <img src="assets/images/video/video-front1.jpg" alt="" />
-                            <div className="video-content content-center">
-                              <h3>The Magician 3</h3>
-                              <a className="video-popup" href="https://www.youtube.com/watch?v=BjiaMBk6rHk"><i className="icofont-play-alt-2" /> view demo</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="single-video">
-                          <div className="video-img video-img-2">
-                            <img src="assets/images/video/video-front4.jpg" alt="" />
-                            <div className="video-content content-center">
-                              <h3>The Magician 3</h3>
-                              <a className="video-popup" href="https://www.youtube.com/watch?v=BjiaMBk6rHk"><i className="icofont-play-alt-2" /> view demo</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/*Video section start*/}
-              {/*Games Review Section Start*/}
-              <Game/>
+              <Game />
             </Route>
 
             <Route path="/login">
@@ -129,7 +63,7 @@ function App() {
 
             <Route path="/profile">
               <Banner detail="profile" />
-              <Route path="/profile/:id" component={Profile}/>
+              <Route path="/profile/:id" component={Profile} />
             </Route>
 
           </Switch>

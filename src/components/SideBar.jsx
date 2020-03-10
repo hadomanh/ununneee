@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PlayedGame from './PlayedGame';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
 } from "react-router-dom";
 
 class SideBar extends Component {
@@ -48,7 +48,9 @@ class SideBar extends Component {
                                 <div className="btn btn-outline-danger col-6 mt-2"><i class="far fa-heart"></i>  Follow</div>
                                 <div className="btn btn-outline-danger col mt-2 ml-2">Chat</div>
                                 <div className="btn btn-outline-danger col-6 mt-2">Donate</div>
-                                <div className="btn btn-outline-danger col mt-2 ml-2">About</div>
+                                <Link className="btn btn-outline-danger col mt-2 ml-2" to={"/profile/" + this.props.id + "/blog"}>
+                                    About
+                                </Link>
                             </div>
 
                         </div>
