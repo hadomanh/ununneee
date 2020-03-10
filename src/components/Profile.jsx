@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
     useParams
 } from "react-router-dom";
+import axios from 'axios';
 import SideBar from './SideBar';
 import Blog from './Blog';
 import SocialProfile from './SocialProfile';
@@ -16,6 +17,8 @@ class Profile extends Component {
 
     render() {
 
+        console.log(this.props.match.params.id);
+        
         console.log(this.props.match.params);
         return (
 

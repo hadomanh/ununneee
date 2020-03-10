@@ -89,6 +89,7 @@ class Header extends Component {
                                                 <li><a href="forum-post.html">Forums Post</a></li>
                                             </ul>
                                         </li>
+                                        <li><a href={'/profile/'} >Profile</a></li>
                                         <li><a href="#">Pages</a>
                                             <ul className="sub-menu">
                                                 <li><a href="blog.html">Blog</a></li>
@@ -117,7 +118,7 @@ class Header extends Component {
                                                                 <li><a href="#">buy premium</a></li>
                                                                 <li><a href="#">setting</a></li>
                                                                 <hr />
-                                                                <li><a href="#">Logout</a></li>
+                                                                <li><a href="/" >Logout</a></li>
                                                             </ul>
                                                         </li>
                                                     )
@@ -138,7 +139,7 @@ class Header extends Component {
                                             () => {
                                                 if (JSON.parse(localStorage.getItem('info')))
                                                     return (
-                                                        <li onClick={this.logout()}>
+                                                        <li onClick={()=>this.logout()}>
                                                             <div>LOGOUT</div>
                                                         </li>
                                                     );

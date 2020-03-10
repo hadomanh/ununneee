@@ -30,6 +30,7 @@ class Login extends Component {
             axios({
                 method: 'post',
                 url: 'http://localhost:5000/users/verify',
+                withCredentials: true,
                 data: {
                     email: this.state.email,
                     password: this.state.pass,
@@ -48,15 +49,8 @@ class Login extends Component {
                 })
                 .catch(function (error) {
                     //handle error
-                    if (error.response.status === 400) {
-                        console.log('400');
-                    }
-                    else if (error.response.status === 404) {
-                        console.log('404');
-                    }
-                    else if (error.response.status === 500) {
-                        console.log('500');
-                    }
+                    if(error) 
+                    console.log(error);
                 })
                 .finally(() => {
 
