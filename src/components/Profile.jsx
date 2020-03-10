@@ -15,56 +15,17 @@ import {
 
 class Profile extends Component {
 
-    componentDidMount() {
-        function loadScript(src) {
-            return new Promise(function (resolve, reject) {
-                var script = document.createElement('script');
-                script.src = src;
-                script.addEventListener('load', function () {
-                    resolve();
-                });
-                script.addEventListener('error', function (e) {
-                    reject(e);
-                });
-                document.body.appendChild(script);
-                document.body.removeChild(script);
-            })
-
-        };
-
-        loadScript("assets/js/vendor/modernizr-2.8.3.min.js")
-        loadScript("assets/js/vendor/jquery-1.12.4.min.js")
-        loadScript("assets/js/popper.min.js")
-        loadScript("assets/js/bootstrap.min.js")
-        loadScript("assets/js/plugins.js")
-        loadScript("assets/js/main.js");
-        axios({
-            method:'get',
-            url:`http://localhost:5000/users/get-fighter-by-id/:${this.props.match.params.id}`,
-        })
-        .then(function(response){
-            console.log('user lay ra ne',response);
-        })
-        .catch(function(error){
-            console.log('error:',error);
-        })
-    }
-
     render() {
 
         console.log(this.props.match.params.id);
         
         console.log(this.props.match.params);
-
-        
-
-
         return (
 
             <div className="all-blog-area section pt-100 pt-lg-80 pt-md-70 pt-sm-60 pt-xs-50">
                 <div className="container">
                     <div className="row row-25">
-                        <SideBar />
+                        <SideBar id={this.props.match.params.id} />
                             <Switch>
                                 <Route path="/profile/:id/blog">
                                     <Blog />

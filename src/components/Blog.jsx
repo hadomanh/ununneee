@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import BlogImage from './BlogImage';
 import BlogVideo from './BlogVideo';
-import BlogImageSlider from './BlogImageSlider';
 
 class Blog extends Component {
     render() {
@@ -10,7 +9,6 @@ class Blog extends Component {
                 <div className="row">
                     <BlogImage/>
                     <BlogVideo/>
-                    <BlogImageSlider/>
                     </div>
                 <div className="row">
                     <div className="col-12">

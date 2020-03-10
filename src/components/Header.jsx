@@ -14,29 +14,29 @@ class Header extends Component {
             })
     }
 
-    componentWillMount() {
-        function loadScript(src) {
-            return new Promise(function (resolve, reject) {
-                var script = document.createElement('script');
-                script.src = src;
-                script.addEventListener('load', function () {
-                    resolve();
-                });
-                script.addEventListener('error', function (e) {
-                    reject(e);
-                });
-                document.body.appendChild(script);
-                document.body.removeChild(script);
-            })
-        };
+    // componentWillMount() {
+    //     function loadScript(src) {
+    //         return new Promise(function (resolve, reject) {
+    //             var script = document.createElement('script');
+    //             script.src = src;
+    //             script.addEventListener('load', function () {
+    //                 resolve();
+    //             });
+    //             script.addEventListener('error', function (e) {
+    //                 reject(e);
+    //             });
+    //             document.body.appendChild(script);
+    //             document.body.removeChild(script);
+    //         })
+    //     };
 
-        loadScript("assets/js/vendor/modernizr-2.8.3.min.js")
-        loadScript("assets/js/vendor/jquery-1.12.4.min.js")
-        loadScript("assets/js/popper.min.js")
-        loadScript("assets/js/bootstrap.min.js")
-        loadScript("assets/js/plugins.js")
-        loadScript("assets/js/main.js")
-    }
+    //     loadScript("assets/js/vendor/modernizr-2.8.3.min.js")
+    //     loadScript("assets/js/vendor/jquery-1.12.4.min.js")
+    //     loadScript("assets/js/popper.min.js")
+    //     loadScript("assets/js/bootstrap.min.js")
+    //     loadScript("assets/js/plugins.js")
+    //     loadScript("assets/js/main.js")
+    // }
 
 
     render() {
@@ -53,7 +53,10 @@ class Header extends Component {
                             {/*Logo start*/}
                             <div className="col-12 col-md-3 col-lg-3 order-md-1 order-lg-1 mt-20 mb-20">
                                 <div className="logo">
-                                    <a href="/"><img src="assets/images/logo.png" alt="" /></a>
+                                    {/* <a href="/"><img src="assets/images/logo.png" alt="" /></a> */}
+                                    <NavLink exact to="/" >
+                                        <img src="assets/images/logo.png" alt="" />
+                                    </NavLink>
                                 </div>
                             </div>
                             {/*Logo end*/}
@@ -141,7 +144,7 @@ class Header extends Component {
                                                         </li>
                                                     );
                                                 else return isLoggedOut;
-                                                
+
                                             }
                                         )()}
 
