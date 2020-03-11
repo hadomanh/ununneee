@@ -7,7 +7,7 @@ class GalleryItem extends Component {
 
     render() {
         return (
-            <div className="single-game mb-50">
+            <div className="single-game ml-30 mr-30 mb-50">
                 <div className="game-img">
                     <Link to={"/profile/" + this.props.id} ><img src={this.props.imgURL} alt="" /></Link>
                 </div>

@@ -2078,18 +2078,34 @@ header.header.header-static {
 .hero-slider .slick-arrow i, .hero-slider-four .slick-arrow i {
   font-size: 30px;
   line-height: 28px;
-  display: inline-block;
+  /* display: inline-block; */
   vertical-align: middle;
 }
 
 .hero-slider .slick-arrow.slick-prev, .hero-slider-four .slick-arrow.slick-prev {
-  right: calc(50% + 7px);
+  right: calc(50% + 100px);
   left: auto;
+  top: calc(90%);
 }
 
 .hero-slider .slick-arrow.slick-next, .hero-slider-four .slick-arrow.slick-next {
-  left: calc(50% + 7px);
+  left: calc(50% + 60px);
   right: auto;
+  top: calc(90%);
+}
+
+.hero-slider .slick-arrow.slick-prev::before, .hero-slider-four .slick-arrow.slick-prev::before {
+  content: "prev";
+  color: #b6b6b6;
+  font-family: "Qanto";
+  font-size: 30px;
+}
+
+.hero-slider .slick-arrow.slick-next::before, .hero-slider-four .slick-arrow.slick-::before {
+  content: "next";
+  color: #b6b6b6;
+  font-family: "Qanto";
+  font-size: 30px;
 }
 
 .hero-slider .slick-arrow:hover, .hero-slider-four .slick-arrow:hover {
@@ -4505,7 +4521,7 @@ header.header.header-static {
     12. Game CSS
 -----------------------------------------*/
 
-.game-slide.row-7 .col-4 {
+.game-slide{
   padding: 0 7px;
 }
 
@@ -4598,15 +4614,17 @@ header.header.header-static {
 
 .single-game .game-img {
   overflow: hidden;
-  height: 350px;
 }
 
 .single-game .game-img a {
   display: block;
+  height: 350px;
 }
 
 .single-game .game-img a img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   -webkit-transition: all 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   -o-transition: all 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transition: all 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -5139,6 +5157,24 @@ header.header.header-static {
   object-fit: cover;
 }
 
+.game-image-large ul li {
+  margin: 0 9px;
+}
+
+.game-image-large li .sm-image {
+  /* padding: 0 5px;
+  height: 180px; */
+  height: 30px;
+  width: 30px;
+}
+
+.game-image-large li .sm-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
 .game-image-gallery-wrap .game-image-large .game-image-full {
   height: 390px;
   width: 100%;
@@ -5597,6 +5633,20 @@ header.header.header-static {
   -webkit-box-flex: 1;
   -ms-flex: 1 0 250px;
   flex: 1 0 250px;
+}
+
+.single-blog-post .blog-img .slick-list {
+  height: 400px;
+}
+
+.single-blog-post .blog-img a  {
+  height: 400px;
+}
+
+.single-blog-post .blog-img a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media only screen and (max-width: 767px) {
