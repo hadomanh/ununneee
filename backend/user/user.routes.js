@@ -61,6 +61,26 @@ route.post('/verify', (req, res) => {
 
 route.post('/uploadAva', (req, res) => {
     console.log('upload avatar req.session', req.session);
+    console.log('req.body upload avatar', req.body);
+    var email='';
+    if (req.session.currentUser) {
+        console.log('loggin bang local');
+        email=req.session.currentUser.email;
+    }
+    else 
+        if (req.session.passport) {
+            console.log('loggin bang fb gg', req.user.email);
+           email=req.user.email;
+        }
+        else {
+            res.status(403).json({
+                success:false,
+                message: 'please login',
+            })
+    }
+    console.log('email user upload avatar',email);
+    
+
     res.status(200).json({
         success: true,
     })
@@ -68,41 +88,41 @@ route.post('/uploadAva', (req, res) => {
 
 
 
-    route.post('/', (req, res) => {
-        const email = req.body.email;
-        const pass = req.body.password;
-        const name = req.body.name;
-        userModel.findOne({ email: req.body.email }, (err, data) => {
-            if (data !== null) {
-                res.status(400).json({
-                    success: false,
-                    message: "Email has been used"
-                });
-            }
-            else {
-                const hashPassword = bcryptjs.hashSync(pass, 10);
+route.post('/', (req, res) => {
+    const email = req.body.email;
+    const pass = req.body.password;
+    const name = req.body.name;
+    userModel.findOne({ email: req.body.email }, (err, data) => {
+        if (data !== null) {
+            res.status(400).json({
+                success: false,
+                message: "Email has been used"
+            });
+        }
+        else {
+            const hashPassword = bcryptjs.hashSync(pass, 10);
 
-                userModel.create({
-                    email: email,
-                    password: hashPassword,
-                    name: name,
-                });
-                req.session.currentUser = {
+            userModel.create({
+                email: email,
+                password: hashPassword,
+                name: name,
+            });
+            req.session.currentUser = {
+                email: req.body.email,
+            };
+            res.status(201).json({
+                success: true,
+                message: "Account " + email + " has been created",
+                data: {
+                    name: req.body.name,
                     email: req.body.email,
-                };
-                res.status(201).json({
-                    success: true,
-                    message: "Account " + email + " has been created",
-                    data: {
-                        name: req.body.name,
-                        email: req.body.email,
-                    }
-                });
-            }
-        })
+                }
+            });
+        }
     })
+})
 
-    module.exports = route;
+module.exports = route;
 
 
 // get /user/:id -- lay 1 thang

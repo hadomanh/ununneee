@@ -9,7 +9,7 @@ var Schema = mongoose.Schema;
 require('./passport/facebook-auth')(passport);
 require('dotenv').config();
 
-
+const uploadsRouter=require('./uploads/uploads.routes');
 const passportSetup = require('./passport/google-auth');
 const authRoutes = require('./routes/auth-routes');
 const userRoutes = require('./user/user.routes')
@@ -54,6 +54,11 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
         // set up route
         server.use('/auth', authRoutes);
         server.use('/users', userRoutes);
+        server.use('/uploads',uploadsRouter);
+
+
+
+        
         server.get("/test", (req, res) => {
             console.log('day nhe',req.session);
             res.status(500).json({
