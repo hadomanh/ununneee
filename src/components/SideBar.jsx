@@ -22,29 +22,77 @@ class SideBar extends Component {
     handleUploadAva = (event) => {
         event.preventDefault();
         var that = this;
-     
-        {
-            axios({
-                method: 'post',
-                url: 'http://localhost:5000/users/uploadAva',
-                withCredentials: true,
-                data: {
-                    email: JSON.parse(localStorage.getItem('info')).email,
-                }
+        if (!this.state.file) {
+            this.setState({
+                errormessage: 'please upload image',
             })
-                .then(function (response) {
-                    //handle success
-                    console.log('uploadAva call success');
-                })
-                .catch(function (error) {
-                    //handle error
-                    if(error) 
-                    console.log(error);
-                })
-                .finally(() => {
+        } else {
+            try {
+                const formData = new FormData();
+                formData.append('image', this.state.file);
+                console.log(this.state.file);
+                {
+                    axios({
+                        method: 'post',
+                        url: 'http://localhost:5000/uploads/photos',
+                        withCredentials: true,
+                        data: formData
+                    })
+                        .then(function (response) {
+                            //handle success
+                            console.log('uploadAva call success',response.data.data);
+                            {
+                                axios({
+                                    method: 'post',
+                                    url: 'http://localhost:5000/users/uploadAva',
+                                    withCredentials: true,
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    data: JSON.stringify({
+                                  
+                                        imageUrl: response.data.data,
+                                   
+                                    }),
+                                })
+                                    .then(function (response) {
+                                        //handle success
+                                       
+                                        
+                                    })
+                                    .catch(function (error) {
+                                        //handle error
+                                        if(error) 
+                                        console.log(error);
+                                    })
+                                    .finally(() => {
+                        
+                                    });
+                            }
+                        })
+                        .catch(function (error) {
+                            //handle error
+                            if(error) 
+                            console.log(error);
+                        })
+                        .finally(() => {
+            
+                        });
+                }
+                
     
-                });
+            }
+            catch (error) {
+                this.setState({
+                    errormessage: error.message,
+                })
+            }
+            this.setState({
+                errormessage: '',
+            })
         }
+
+
     }
 
     handleFileChange=(event)=>{

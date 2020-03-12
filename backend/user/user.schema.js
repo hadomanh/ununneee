@@ -18,6 +18,7 @@ const UserSchema = new mongoose.Schema({
     avaUrl:{
         type:String,
         require:true,
+        default:'',
     },
     role: {
         type:String,

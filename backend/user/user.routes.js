@@ -66,11 +66,45 @@ route.post('/uploadAva', (req, res) => {
     if (req.session.currentUser) {
         console.log('loggin bang local');
         email=req.session.currentUser.email;
+        // const doc1=userModel.findOneAndUpdate({email:req.session.currentUser.email},{
+        //     avaUrl:req.body.imageUrl
+        // })
+        // console.log('check',doc1);
+        console.log('imageurlllll',req.body.imageUrl);
+        // userModel.update({email:req.session.currentUser.email},{$set: { "avaUrl" : req.body.imageUrl}});
+        userModel.findOne({email:req.session.currentUser.email},(err,data)=>{
+            console.log('user find',data);
+            id=data.id;
+            console.log(id);
+            userModel.findByIdAndUpdate(id,{avaUrl:req.body.imageUrl},function(err,data){
+                console.log('findbyidandupadet',data);
+            })
+        })
+        res.status(200).json({
+            success: true,
+        })
     }
-    else 
-        if (req.session.passport) {
+    else if (req.session.passport) {
             console.log('loggin bang fb gg', req.user.email);
+        //    const doc2= userModel.findOneAndUpdate({email:req.user.email},{
+        //         avaUrl:req.body.imageUrl
+        //     })
+        //     console.log('check2',doc2)
+        userModel.findOne({email:req.user.email},(err,data)=>{
+            console.log('user find',data);
+            id=data.id;
+            console.log(id);
+            userModel.findByIdAndUpdate(id,{avaUrl:req.body.imageUrl},function(err,data){
+                console.log('findbyidandupadet',data);
+            })
+        })
+
+        // userModel.update({email:req.user.email},{$set: { avaUrl : req.body.imageUrl}});
+        console.log('imageurlllll',req.body.imageUrl);
            email=req.user.email;
+           res.status(200).json({
+            success: true,
+        })
         }
         else {
             res.status(403).json({
@@ -81,9 +115,7 @@ route.post('/uploadAva', (req, res) => {
     console.log('email user upload avatar',email);
     
 
-    res.status(200).json({
-        success: true,
-    })
+
 })
 
 
