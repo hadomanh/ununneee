@@ -9,9 +9,9 @@ class SliderItem extends Component {
                         <div className="col-12">
                             {/*Hero Content start*/}
                             <div className="hero-content">
-                                <h1>{this.props.title}</h1> */}
+                                <h1>{this.props.title}</h1>
                                 <h2>BATTLE BEGAN’S HERE</h2>
-                                <a className="df-btn" href="#">Buy now</a>
+                                <a className="df-btn" href="kenh14.vn">Buy now</a>
                             </div>
                             {/*Hero Content end*/}
                         </div>

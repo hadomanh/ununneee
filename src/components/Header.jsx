@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 class Header extends Component {
@@ -14,29 +14,29 @@ class Header extends Component {
             })
     }
 
-    // componentWillMount() {
-    //     function loadScript(src) {
-    //         return new Promise(function (resolve, reject) {
-    //             var script = document.createElement('script');
-    //             script.src = src;
-    //             script.addEventListener('load', function () {
-    //                 resolve();
-    //             });
-    //             script.addEventListener('error', function (e) {
-    //                 reject(e);
-    //             });
-    //             document.body.appendChild(script);
-    //             document.body.removeChild(script);
-    //         })
-    //     };
+    componentDidMount() {
+        function loadScript(src) {
+            return new Promise(function (resolve, reject) {
+                var script = document.createElement('script');
+                script.src = src;
+                script.addEventListener('load', function () {
+                    resolve();
+                });
+                script.addEventListener('error', function (e) {
+                    reject(e);
+                });
+                document.body.appendChild(script);
+                document.body.removeChild(script);
+            })
+        };
 
-    //     loadScript("assets/js/vendor/modernizr-2.8.3.min.js")
-    //     loadScript("assets/js/vendor/jquery-1.12.4.min.js")
-    //     loadScript("assets/js/popper.min.js")
-    //     loadScript("assets/js/bootstrap.min.js")
-    //     loadScript("assets/js/plugins.js")
-    //     loadScript("assets/js/main.js")
-    // }
+        loadScript("assets/js/vendor/modernizr-2.8.3.min.js")
+        loadScript("assets/js/vendor/jquery-1.12.4.min.js")
+        loadScript("assets/js/popper.min.js")
+        loadScript("assets/js/bootstrap.min.js")
+        loadScript("assets/js/plugins.js")
+        loadScript("assets/js/main.js")
+    }
 
 
     render() {
@@ -90,7 +90,7 @@ class Header extends Component {
                                             </ul>
                                         </li>
                                         <li><a href={'/profile/'} >Profile</a></li>
-                                        <li><a href="#">Pages</a>
+                                        <li><a href="kenh14.vn">Pages</a>
                                             <ul className="sub-menu">
                                                 <li><a href="blog.html">Blog</a></li>
                                                 <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
@@ -112,11 +112,11 @@ class Header extends Component {
                                                     return (
                                                         <li>
                                                             <div className="ava-img mt-3">
-                                                                <img src="assets/images/game/game9.jpg" />
+                                                                <img src="assets/images/game/game9.jpg" alt="mini ava" />
                                                             </div>
                                                             <ul className="sub-menu">
-                                                                <li><a href="#">buy premium</a></li>
-                                                                <li><a href="#">setting</a></li>
+                                                                <li><a href="kenh14.vn">buy premium</a></li>
+                                                                <li><a href="kenh14.vn">setting</a></li>
                                                                 <hr />
                                                                 <li><a href="/" >Logout</a></li>
                                                             </ul>
@@ -150,9 +150,9 @@ class Header extends Component {
 
 
 
-                                        <li className="header-search"><a className="header-search-toggle" href="#"><i className="icofont-search-2" /></a>
+                                        <li className="header-search"><a className="header-search-toggle" href="kenh14.vn"><i className="icofont-search-2" /></a>
                                             <div className="header-search-form">
-                                                <form action="#">
+                                                <form action="kenh14.vn">
                                                     <input type="text" placeholder="Type and hit enter" />
                                                     <button><i className="icofont-search" /></button>
                                                 </form>

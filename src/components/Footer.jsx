@@ -23,10 +23,10 @@ class Footer extends Component {
                                     <div className="footer-nav">
                                         <nav>
                                             <ul>
-                                                <li><a href="#">forums</a></li>
-                                                <li><a href="#">demo</a></li>
-                                                <li><a href="#">support</a></li>
-                                                <li><a href="#">terms &amp; conditions</a></li>
+                                                <li><a href="kenh14.vn">forums</a></li>
+                                                <li><a href="kenh14.vn">demo</a></li>
+                                                <li><a href="kenh14.vn">support</a></li>
+                                                <li><a href="kenh14.vn">terms &amp; conditions</a></li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -39,10 +39,10 @@ class Footer extends Component {
                                     <div className="footer-social">
                                         <span>follow us:</span>
                                         <ul>
-                                            <li><a href="#"><i className="icofont-facebook" /></a></li>
-                                            <li><a href="#"><i className="icofont-twitter" /></a></li>
-                                            <li><a href="#"><i className="icofont-instagram" /></a></li>
-                                            <li><a href="#"><i className="icofont-youtube-play" /></a></li>
+                                            <li><a href="kenh14.vn"><i className="icofont-facebook" /></a></li>
+                                            <li><a href="kenh14.vn"><i className="icofont-twitter" /></a></li>
+                                            <li><a href="kenh14.vn"><i className="icofont-instagram" /></a></li>
+                                            <li><a href="kenh14.vn"><i className="icofont-youtube-play" /></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@ class Footer extends Component {
                         <div className="row">
                             <div className="col-12">
                                 <div className="copyright text-center">
-                                    <p>Copyright ©2018 <a href="#">Gilbard</a>. All rights reserved.</p>
+                                    <p>Copyright ©2018 <a href="kenh14.vn">Gilbard</a>. All rights reserved.</p>
                                 </div>
                             </div>
                         </div>

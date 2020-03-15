@@ -3,17 +3,18 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
-const bcryptjs = require('bcryptjs');
 const passport = require('passport');
-var Schema = mongoose.Schema;
 require('./passport/facebook-auth')(passport);
 require('dotenv').config();
 
+// basic init
+const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
 const passportSetup = require('./passport/google-auth');
 const authRoutes = require('./routes/auth-routes');
 const userRoutes = require('./user/user.routes')
-const userModel = require('./user/user.schema');
 
 
 // connect to mongodb
@@ -24,22 +25,19 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
     else {
         console.log("MongoDB Connected...");
 
-        // basic init
-        const server = express();
-
-        server.use(express.static('public'));
+        app.use(express.static('public'));
         // set up cors to allow us to accept requests from our client
-        server.use(cors({
-                origin: "http://localhost:3000", // allow to server to accept request from different origin
-                methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-                credentials: true // allow session cookie from browser to pass through
-            })
+        app.use(cors({
+            origin: "http://localhost:3000", // allow to app to accept request from different origin
+            methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+            credentials: true // allow session cookie from browser to pass through
+        })
         );
 
-        server.use(bodyParser.json());
+        app.use(bodyParser.json());
 
         // set up session cookies
-        server.use(session({
+        app.use(session({
             secret: 'keyboard cat',
             resave: true,
             saveUninitialized: false,
@@ -47,15 +45,14 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
         }));
 
         // initialize passport
-        
-        server.use(passport.initialize());
-        server.use(passport.session());
+
+        app.use(passport.initialize());
+        app.use(passport.session());
 
         // set up route
-        server.use('/auth', authRoutes);
-        server.use('/users', userRoutes);
-        server.get("/test", (req, res) => {
-            console.log('day nhe',req.session);
+        app.use('/auth', authRoutes);
+        app.use('/users', userRoutes);
+        app.get("/test", (req, res) => {
             res.status(500).json({
                 success: true,
             });
@@ -63,10 +60,29 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
         server.listen(process.env.PORT || 5000, (err) => {
             if (err)
                 throw err;
-            else
-                console.log("Server listening on port 5000...");
+            else {
+                console.log("app listening on port 5000...");
                 console.log('hadm x tanhng...');
                 console.log('ununneee here we come');
+            }
         });
+
+        io.on('connection', socket => {
+            socket.removeAllListeners();
+            console.log("New client ", socket.id);
+            io.to(socket.id).emit('join', socket.id);
+
+            socket.on('typing', name => {
+                socket.broadcast.emit('typing', name);
+            });
+
+            socket.on('send', data => {
+                socket.broadcast.emit('message', data);
+            });
+
+            socket.on('disconnect', () => console.log("Client off", socket.id));
+
+        });
+
     }
 })

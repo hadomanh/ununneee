@@ -17,7 +17,7 @@ class SideBar extends Component {
                         <div className="single-featured-game mb-20">
                             <div className="game-img" >
                                 <img src="assets/images/game/game9.jpg" alt="" />
-                                <a className="game-title" href="#">tanhng</a>
+                                <a className="game-title" href="kenh14.vn">tanhng</a>
                             </div>
                         </div>
                         <h3>Tien Anh Nguyen</h3>
@@ -29,10 +29,10 @@ class SideBar extends Component {
                         <h3>follow me</h3>
                         <div className="sidebar-social">
                             <ul>
-                                <li><a className="facebook" href="#"><i className="icofont-facebook" /></a></li>
-                                <li><a className="youtube" href="#"><i className="icofont-youtube-play" /></a></li>
-                                <li><a className="instagram" href="#"><i className="icofont-instagram" /></a></li>
-                                <li><a className="twitter" href="#"><i className="icofont-twitter" /></a></li>
+                                <li><a className="facebook" href="kenh14.vn"><i className="icofont-facebook" /></a></li>
+                                <li><a className="youtube" href="kenh14.vn"><i className="icofont-youtube-play" /></a></li>
+                                <li><a className="instagram" href="kenh14.vn"><i className="icofont-instagram" /></a></li>
+                                <li><a className="twitter" href="kenh14.vn"><i className="icofont-twitter" /></a></li>
                             </ul>
                         </div>
                     </div>
@@ -45,8 +45,10 @@ class SideBar extends Component {
                         <div className="btn btn-group">
                             <div className="row">
                                 <div className="btn btn-danger col-12">Upload picture</div>
-                                <div className="btn btn-outline-danger col-6 mt-2"><i class="far fa-heart"></i>  Follow</div>
-                                <div className="btn btn-outline-danger col mt-2 ml-2">Chat</div>
+                                <div className="btn btn-outline-danger col-6 mt-2"><i className="far fa-heart"></i>  Follow</div>
+                                <Link className="btn btn-outline-danger col mt-2 ml-2" to={"/profile/" + this.props.id + "/chat"}>
+                                    Chat
+                                </Link>
                                 <div className="btn btn-outline-danger col-6 mt-2">Donate</div>
                                 <Link className="btn btn-outline-danger col mt-2 ml-2" to={"/profile/" + this.props.id + "/blog"}>
                                     About
@@ -74,12 +76,12 @@ class SideBar extends Component {
                         <h3>me on instagram:</h3>
                         <div className="sidebar-instagram">
                             <ul>
-                                <li><a href="#"><img src="assets/images/instagram/instagram1.jpg" alt="" /></a></li>
-                                <li><a href="#"><img src="assets/images/instagram/instagram2.jpg" alt="" /></a></li>
-                                <li><a href="#"><img src="assets/images/instagram/instagram3.jpg" alt="" /></a></li>
-                                <li><a href="#"><img src="assets/images/instagram/instagram4.jpg" alt="" /></a></li>
-                                <li><a href="#"><img src="assets/images/instagram/instagram5.jpg" alt="" /></a></li>
-                                <li><a href="#"><img src="assets/images/instagram/instagram6.jpg" alt="" /></a></li>
+                                <li><a href="kenh14.vn"><img src="assets/images/instagram/instagram1.jpg" alt="" /></a></li>
+                                <li><a href="kenh14.vn"><img src="assets/images/instagram/instagram2.jpg" alt="" /></a></li>
+                                <li><a href="kenh14.vn"><img src="assets/images/instagram/instagram3.jpg" alt="" /></a></li>
+                                <li><a href="kenh14.vn"><img src="assets/images/instagram/instagram4.jpg" alt="" /></a></li>
+                                <li><a href="kenh14.vn"><img src="assets/images/instagram/instagram5.jpg" alt="" /></a></li>
+                                <li><a href="kenh14.vn"><img src="assets/images/instagram/instagram6.jpg" alt="" /></a></li>
                             </ul>
                         </div>
                     </div>
