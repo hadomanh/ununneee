@@ -40,8 +40,9 @@ class Login extends Component {
                     //handle success
                     if (response.status === 200) {
                         const info = {
-                            'name': response.data.data.name,
-                            'email': response.data.data.email,
+                            name: response.data.data.name,
+                            email: response.data.data.email,
+                            id: response.data.data.id,
                         };
                         window.localStorage.setItem("info", JSON.stringify(info));
                         window.location.href = '/';
@@ -74,7 +75,8 @@ class Login extends Component {
                 console.log("login front-end", response);
                 var info = {
                     name: response.data.name,
-                    email: response.data.email
+                    email: response.data.email,
+                    id: response.data._id,
                 }
 
                 window.localStorage.setItem('info', JSON.stringify(info));

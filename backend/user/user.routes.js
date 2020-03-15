@@ -36,13 +36,15 @@ route.post('/verify', (req, res) => {
                     req.session.currentUser = {
                         email: data.email,
                     };
+                    console.log('id',data.id);
                     console.log(req.session);
                     res.status(200).json({
                         success: true,
                         message: "Login Success",
                         data: {
                             email: data.email,
-                            name: data.name
+                            name: data.name,
+                            id:data.id,
                         }
                     })
                 }

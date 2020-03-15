@@ -17,6 +17,9 @@ router.get('/facebook/redirect', passport.authenticate("facebook", {
 
 
 router.get('/logout', (req, res)=>{
+    if (req.user) {
+        req.logout();
+    };
     req.session.destroy((err) => {
         if (err) {
             res.json({
@@ -53,6 +56,7 @@ router.get('/google/redirect', passport.authenticate("google", {
 
 router.get('/google/user', (req, res) => {
     if (req.user) {
+        console.log('req.user: ');
         res.send(req.user);
       }
 })
