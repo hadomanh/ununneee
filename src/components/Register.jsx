@@ -1,9 +1,6 @@
 import React, { Component, } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-
-const emailRegex = "^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$";
-const passwordRegex = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}";
 
 class Register extends Component {
 
@@ -125,7 +122,7 @@ class Register extends Component {
                                 <h3>Also you can login with...</h3>
                                 <a href="http://localhost:5000/auth/facebook" className="facebook-login">Login with <i className="fa fa-facebook" /></a>
                                 <a href="http://localhost:5000/auth/google" className="google-plus-login">Login with <i className="fa fa-google-plus" /></a>
-                                <a href="#" className="twitter-login">Login with <i className="fa fa-twitter" /></a>
+                                <a href="kenh14.vn" className="twitter-login">Login with <i className="fa fa-twitter" /></a>
                             </div>
                         </div>
                     </div>

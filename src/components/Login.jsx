@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const emailRegex = "^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$";
-const passwordRegex = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}";
-
 class Login extends Component {
     constructor(props) {
         super(props)
@@ -24,38 +21,37 @@ class Login extends Component {
 
 
     handleFormSubmit = (event) => {
-        var that = this;
         event.preventDefault();
-        {
-            axios({
-                method: 'post',
-                url: 'http://localhost:5000/users/verify',
-                withCredentials: true,
-                data: {
-                    email: this.state.email,
-                    password: this.state.pass,
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:5000/users/verify',
+            withCredentials: true,
+            data: {
+                email: this.state.email,
+                password: this.state.pass,
+            }
+        })
+            .then(function (response) {
+                //handle success
+                if (response.status === 200) {
+                    const info = {
+                        'name': response.data.data.name,
+                        'email': response.data.data.email,
+                    };
+                    window.localStorage.setItem("info", JSON.stringify(info));
+                    window.location.href = '/';
                 }
             })
-                .then(function (response) {
-                    //handle success
-                    if (response.status === 200) {
-                        const info = {
-                            'name': response.data.data.name,
-                            'email': response.data.data.email,
-                        };
-                        window.localStorage.setItem("info", JSON.stringify(info));
-                        window.location.href = '/';
-                    }
-                })
-                .catch(function (error) {
-                    //handle error
-                    if(error) 
+            .catch(function (error) {
+                //handle error
+                if (error)
                     console.log(error);
-                })
-                .finally(() => {
+            })
+            .finally(() => {
 
-                });
-        }
+            });
+
     }
 
     componentDidMount() {
@@ -108,7 +104,7 @@ class Login extends Component {
                                         <div className="col-12 mb-15">
                                             <input type="checkbox" id="remember_me" />
                                             <label htmlFor="remember_me">Remember me</label>
-                                            <a href="#">Forgotten pasward?</a>
+                                            <a href="kenh14.vn">Forgotten pasward?</a>
                                         </div>
                                         <div className="col-12"><input type="submit" value="LOGIN" /></div>
                                     </div>
@@ -125,7 +121,7 @@ class Login extends Component {
                                 <h3>Also you can login with...</h3>
                                 <a href="http://localhost:5000/auth/facebook" className="facebook-login">Login with <i className="fa fa-facebook" /></a>
                                 <a href="http://localhost:5000/auth/google" className="google-plus-login">Login with <i className="fa fa-google-plus" /></a>
-                                <a href="#" className="twitter-login">Login with <i className="fa fa-twitter" /></a>
+                                <a href="kenh14.vn" className="twitter-login">Login with <i className="fa fa-twitter" /></a>
                             </div>
                         </div>
                     </div>

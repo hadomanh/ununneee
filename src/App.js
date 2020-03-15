@@ -9,11 +9,9 @@ import Register from './components/Register';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Login from './components/Login';
-import Slider from './components/Slider';
 import Featured from './components/Featured';
 import Newsletter from './components/Newsletter';
 import Profile from './components/Profile';
@@ -69,7 +67,7 @@ function App() {
           </Switch>
 
 
-          <Newsletter />
+          {/* <Newsletter /> */}
           <Footer />
         </Router>
 

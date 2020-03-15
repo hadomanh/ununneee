@@ -1325,7 +1325,8 @@ header.header.is-sticky .default-header .main-menu ul li a {
 }
 
 header.header.header-static {
-  position: static;
+  position: fixed;
+  top: 0;
 }
 
 @media only screen and (max-width: 767px) {
@@ -4520,6 +4521,10 @@ header.header.header-static {
 /*---------------------------------------
     12. Game CSS
 -----------------------------------------*/
+
+.new-game-area .container .slick-slider .slick-dots {
+  bottom: 10px;
+}
 
 .game-slide{
   padding: 0 7px;
