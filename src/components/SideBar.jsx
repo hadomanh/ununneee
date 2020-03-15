@@ -31,7 +31,6 @@ class SideBar extends Component {
                 const formData = new FormData();
                 formData.append('image', this.state.file);
                 console.log(this.state.file);
-                {
                     axios({
                         method: 'post',
                         url: 'http://localhost:5000/uploads/photos',
@@ -56,9 +55,7 @@ class SideBar extends Component {
                                     }),
                                 })
                                     .then(function (response) {
-                                        //handle success
-                                       
-                                        
+                                        //handle success  
                                     })
                                     .catch(function (error) {
                                         //handle error
@@ -78,7 +75,7 @@ class SideBar extends Component {
                         .finally(() => {
             
                         });
-                }
+                
                 
     
             }

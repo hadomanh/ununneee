@@ -43,9 +43,23 @@ class Login extends Component {
                     window.location.href = '/';
                 }
             })
-            .catch(function (error) {
-                //handle error
-                if (error)
+
+                .then(function (response) {
+                    //handle success
+                    if (response.status === 200) {
+                        const info = {
+                            name: response.data.data.name,
+                            email: response.data.data.email,
+                            id: response.data.data.id,
+                        };
+                        window.localStorage.setItem("info", JSON.stringify(info));
+                        window.location.href = '/';
+                    }
+                })
+                .catch(function (error) {
+                    //handle error
+                    if(error) 
+
                     console.log(error);
             })
             .finally(() => {
@@ -70,7 +84,8 @@ class Login extends Component {
                 console.log("login front-end", response);
                 var info = {
                     name: response.data.name,
-                    email: response.data.email
+                    email: response.data.email,
+                    id: response.data._id,
                 }
 
                 window.localStorage.setItem('info', JSON.stringify(info));
