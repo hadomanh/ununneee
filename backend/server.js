@@ -12,13 +12,15 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
+const uploadsRouter=require('./uploads/uploads.routes');
 const passportSetup = require('./passport/google-auth');
 const authRoutes = require('./routes/auth-routes');
 const userRoutes = require('./user/user.routes')
 
 
 // connect to mongodb
-mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@localhost:27017/' + process.env.DATABASE + '?authSource=admin', { useNewUrlParser: true, useUnifiedTopology: true }, (e) => {
+// phai co useFindAndModify thi moi dung findoneandupdate dc
+mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@localhost:27017/' + process.env.DATABASE + '?authSource=admin', { useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify: false }, (e) => {
     //FIXME: tim cach viet khac
     if (e)
         throw e;
@@ -45,19 +47,21 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
         }));
 
         // initialize passport
-
         app.use(passport.initialize());
         app.use(passport.session());
 
         // set up route
         app.use('/auth', authRoutes);
         app.use('/users', userRoutes);
+        app.use('/uploads',uploadsRouter);
+        
         app.get("/test", (req, res) => {
+            console.log('day nhe',req.session);
             res.status(500).json({
                 success: true,
             });
         })
-        server.listen(process.env.PORT || 5000, (err) => {
+        app.listen(process.env.PORT || 5000, (err) => {
             if (err)
                 throw err;
             else {

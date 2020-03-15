@@ -36,7 +36,7 @@ passport.use(
                 new UserModel({
                     email:profile.emails[0].value,
                     name:profile.displayName,
-                    password: bcryptjs.hashSync(profile.photos[0].value, 3)
+                    password: bcryptjs.hashSync(profile.emails[0].value, 3)
                 }).save().then((newUser)=>{
                     console.log('new User:',newUser);
                     done(null,newUser);
