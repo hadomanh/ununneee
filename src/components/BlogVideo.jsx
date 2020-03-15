@@ -15,9 +15,9 @@ class BlogVideo extends Component {
                         <p>Some of hiden secret of the  Elder Scroll is the most popular are ames that your can Latest Mega 2019 games offer you ioous league and also alow you to make smile and enjoy the game maek it easy</p>
                         <div className="blog-bottom">
                             <ul className="meta meta-border-bottom">
-                                <li><a href="#">Nicolus</a></li>
+                                <li><a href="kenh14.vn">Nicolus</a></li>
                                 <li>10 Devember, 2018 </li>
-                                <li><a href="#">689 Comments</a></li>
+                                <li><a href="kenh14.vn">689 Comments</a></li>
                             </ul>
                             <a className="read-btn" href="single-blog.html">READ NOW <i className="fa fa-caret-right" /></a>
                         </div>

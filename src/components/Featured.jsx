@@ -23,7 +23,7 @@ class Featured extends Component {
                             {/*Featured Title Start*/}
                             <div className="featured-title">
                                 <h2>FEATURED GAMES</h2>
-                                <a href="#">VIEW ALL GAMES</a>
+                                <a href="kenh14.vn">VIEW ALL GAMES</a>
                             </div>
                             {/*Featured Title End*/}
                         </div>

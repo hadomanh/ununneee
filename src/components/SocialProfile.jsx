@@ -7,7 +7,7 @@ class SocialProfile extends Component {
         const settings = {
             customPaging: function (i) {
                 return (
-                    <div className="sm-image"><img src={`assets/images/game/game${i+1}.jpg`} alt="product image thumb" /></div>
+                    <div className="sm-image"><img src={`assets/images/game/game${i+1}.jpg`} alt="#" /></div>
                 );
             },
             dots: true,
@@ -73,7 +73,7 @@ class SocialProfile extends Component {
                         <div className="timelaine-wrapper mt-30 mb-30">
                             <div className="single-timeline pb-30">
                                 <h4>#1: Do Manh Ha <span className="game-price">$49</span></h4>
-                                <blockquote class="blockquote">
+                                <blockquote className="blockquote">
                                     <p>Rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because  nally tances occur in which toil and pain can procure </p>
                                 </blockquote>
                             </div>
@@ -193,10 +193,10 @@ class SocialProfile extends Component {
                                 </div>
                                 <p>The Witcher 3 is the best action game that i play ever. encounter consequences that are mely painful. Nor again is there me anyone who loves or pursues or desires take a trivial meaning less sexample, which of us ever undertakes laborious physical exercise.</p>
                                 <div className="review-name-action">
-                                    <a href="#">Adam Smith</a>
+                                    <a href="kenh14.vn">Adam Smith</a>
                                     <ul>
-                                        <li><a href="#"><i className="fa fa-thumbs-o-up" />425</a></li>
-                                        <li><a href="#"><i className="fa fa-thumbs-o-down" />65</a></li>
+                                        <li><a href="kenh14.vn"><i className="fa fa-thumbs-o-up" />425</a></li>
+                                        <li><a href="kenh14.vn"><i className="fa fa-thumbs-o-down" />65</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -213,16 +213,16 @@ class SocialProfile extends Component {
                                 </div>
                                 <p>The Witcher 3 is the best action game that i play ever. encounter consequences that are mely painful. Nor again is there me anyone who loves or pursues or desires take a trivial meaning less sexample, which of us ever undertakes laborious physical exercise.</p>
                                 <div className="review-name-action">
-                                    <a href="#">Thomas Morgan</a>
+                                    <a href="kenh14.vn">Thomas Morgan</a>
                                     <ul>
-                                        <li><a href="#"><i className="fa fa-thumbs-o-up" />425</a></li>
-                                        <li><a href="#"><i className="fa fa-thumbs-o-down" />65</a></li>
+                                        <li><a href="kenh14.vn"><i className="fa fa-thumbs-o-up" />425</a></li>
+                                        <li><a href="kenh14.vn"><i className="fa fa-thumbs-o-down" />65</a></li>
                                     </ul>
                                 </div>
                             </div>
                             {/*Single Review End*/}
                             <div className="reply-btn">
-                                <a href="#">view more <i className="icofont-long-arrow-right" /></a>
+                                <a href="kenh14.vn">view more <i className="icofont-long-arrow-right" /></a>
                             </div>
                         </div>
                     </div>

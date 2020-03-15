@@ -4,7 +4,7 @@ class SingleFeatured extends Component {
     render() {
         return (
             <div className="single-featured">
-                <a href="#"><img src={this.props.imgURL} alt="" /></a>
+                <a href="kenh14.vn"><img src={this.props.imgURL} alt="" /></a>
             </div>
         );
     }
