@@ -61,7 +61,7 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
                 success: true,
             });
         })
-        app.listen(process.env.PORT || 5000, (err) => {
+        server.listen(process.env.PORT || 5000, (err) => {
             if (err)
                 throw err;
             else {
