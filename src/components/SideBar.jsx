@@ -190,7 +190,9 @@ class SideBar extends Component {
                         ) : null}
                                 <div className="btn btn-danger col-12" onClick={(event)=>this.handleUploadAva(event)} >Upload picture</div>
                                 <div className="btn btn-outline-danger col-6 mt-2"><i class="far fa-heart"></i>  Follow</div>
-                                <div className="btn btn-outline-danger col mt-2 ml-2">Chat</div>
+                                <Link className="btn btn-outline-danger col mt-2 ml-2" to={"/profile/" + this.props.id + "/chat"}>
+                                    Chat
+                                </Link>
                                 <div className="btn btn-outline-danger col-6 mt-2">Donate</div>
                                 <Link className="btn btn-outline-danger col mt-2 ml-2" to={"/profile/" + this.props.id + "/blog"}>
                                     About
