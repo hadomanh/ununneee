@@ -11,22 +11,26 @@ class LeftMessage extends Component {
 
     render() {
         return (
-            <div className="d-flex justify-content-start">
-                <div
-                    onMouseOver={() => this.setState({ showTime: true })}
-                    onMouseLeave={() => this.setState({ showTime: false })}
-                    className="chat-message chat-message-left">
-                    {this.props.message}
+            <div>
+                <i>{this.props.name}</i>
+                <div className="d-flex justify-content-start">
+                    <div
+                        onMouseOver={() => this.setState({ showTime: true })}
+                        onMouseLeave={() => this.setState({ showTime: false })}
+                        className="chat-message chat-message-left">
+                        {this.props.message}
+                    </div>
+
+                    {(
+                        () => {
+                            if (this.state.showTime)
+                                return (<i style={{ marginLeft: "10px" }}>{this.props.time}</i>);
+                        }
+                    )()}
+
                 </div>
-
-                {(
-                    () => {
-                        if (this.state.showTime)
-                            return (<i style={{ marginLeft: "10px" }}>{this.props.time}</i>);
-                    }
-                )()}
-
             </div>
+
         );
     }
 }
