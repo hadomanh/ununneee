@@ -2,23 +2,23 @@ import React, { Component } from 'react';
 import PlayedGame from './PlayedGame';
 import axios from 'axios';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link
 } from "react-router-dom";
 
-const maxFileSize=5000000;
+const maxFileSize = 5000000;
 const imageFileRegex = /\.(gif|jpg|jpeg|tiff|png)$/i;
 
-
-
 class SideBar extends Component {
-    state={
-        file:undefined,
-        imageURL:'',
-        errormessage:'',
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            file: undefined,
+            imageURL: '',
+            errormessage: '',
+        }
     }
+    
     handleUploadAva = (event) => {
         event.preventDefault();
         var that = this;
@@ -30,54 +30,49 @@ class SideBar extends Component {
             try {
                 const formData = new FormData();
                 formData.append('image', this.state.file);
-                console.log(this.state.file);
-                    axios({
-                        method: 'post',
-                        url: 'http://localhost:5000/uploads/photos',
-                        withCredentials: true,
-                        data: formData
+                
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:5000/uploads/photos',
+                    withCredentials: true,
+                    data: formData
+                })
+                    .then(function (response) {
+                        //handle success
+                        axios({
+                            method: 'post',
+                            url: 'http://localhost:5000/users/uploadAva',
+                            withCredentials: true,
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            data: JSON.stringify({
+
+                                imageUrl: response.data.data,
+
+                            }),
+                        })
+                            .then(function (response) {
+                                //handle success  
+                            })
+                            .catch(function (error) {
+                                //handle error
+                                if (error)
+                                    console.log(error);
+                            })
+                            .finally(() => {
+
+                            });
                     })
-                        .then(function (response) {
-                            //handle success
-                            console.log('uploadAva call success',response.data.data);
-                            {
-                                axios({
-                                    method: 'post',
-                                    url: 'http://localhost:5000/users/uploadAva',
-                                    withCredentials: true,
-                                    headers: {
-                                        "Content-Type": "application/json"
-                                    },
-                                    data: JSON.stringify({
-                                  
-                                        imageUrl: response.data.data,
-                                   
-                                    }),
-                                })
-                                    .then(function (response) {
-                                        //handle success  
-                                    })
-                                    .catch(function (error) {
-                                        //handle error
-                                        if(error) 
-                                        console.log(error);
-                                    })
-                                    .finally(() => {
-                        
-                                    });
-                            }
-                        })
-                        .catch(function (error) {
-                            //handle error
-                            if(error) 
+                    .catch(function (error) {
+                        //handle error
+                        if (error)
                             console.log(error);
-                        })
-                        .finally(() => {
-            
-                        });
-                
-                
-    
+                    })
+                    .finally(() => {
+
+                    });
+
             }
             catch (error) {
                 this.setState({
@@ -92,31 +87,26 @@ class SideBar extends Component {
 
     }
 
-    handleFileChange=(event)=>{
-        console.log('handlefile funciton',event.target.files[0]);
-        const file=event.target.files[0];
+    handleFileChange = (event) => {
+        const file = event.target.files[0];
 
         if (!imageFileRegex.test(file.name)) {
-            console.log('eror1');
             this.setState({
                 errormessage: 'invalid file',
             });
-            
+
         }
         else if (file.size > maxFileSize) {
-            console.log('eror2');
             this.setState({
                 errormessage: 'file is too large',
             });
 
         } else {
-            console.log('eror3');
             //file reader để cho preview
             const fileReader = new FileReader();
             fileReader.readAsDataURL(file);
             fileReader.onload = () => {
                 //filereader.result
-                console.log('file reader result',fileReader.result);
                 this.setState({
                     errormessage: '',
                     file: file,
@@ -125,11 +115,9 @@ class SideBar extends Component {
             };
 
         }
-        
+
     }
 
-
- 
     render() {
         return (
             <div className="col-lg-4 order-lg-1 order-2">
@@ -165,30 +153,46 @@ class SideBar extends Component {
                         <h3>Setting</h3>
 
                         <div className="btn btn-group">
-                        
-                            <div className="row">
-                            
-                            <input
-                                placeholder="upload"
-                                id='file'
-                                type="file"
-                                className='form-control-file col-12'
-                                accept="image/*"
-                                filename={this.state.file ? this.state.file.name : ''}
-                                onChange={this.handleFileChange}
-                            />
-                            
-                            {this.state.imageUrl ? (
-                            <div style={{
-                                backgroundImage: `url(${this.state.imageUrl})`,
-                                backgroundRepeat: 'no-repeat',
-                                backgroundSize: 'cover',
-                                width: '100%',
-                                height: '400px',
 
-                            }}></div>
-                        ) : null}
-                                <div className="btn btn-danger col-12" onClick={(event)=>this.handleUploadAva(event)} >Upload picture</div>
+                            <div className="row">
+
+                                {this.state.imageUrl ? null :
+                                    <div className="upload-btn-wrapper btn btn-danger col-12">
+                                        Upload picture
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            filename={this.state.file ? this.state.file.name : ''}
+                                            onChange={this.handleFileChange}
+                                        />
+                                    </div>
+                                }
+
+                                {this.state.imageUrl ? (
+                                    <div style={{
+                                        backgroundImage: `url(${this.state.imageUrl})`,
+                                        backgroundRepeat: 'no-repeat',
+                                        backgroundSize: 'cover',
+                                        width: '100%',
+                                        height: '400px',
+                                    }}></div>
+                                ) : null}
+
+                                {this.state.imageUrl ? (
+                                    <div
+                                        className="btn btn-success col-12 mt-2"
+                                        onClick={(event) => this.handleUploadAva(event)} >
+                                        Save picture
+                                    </div>
+                                ) : null}
+
+                                {this.state.imageUrl ? (
+                                    <div className="btn btn-outline-dark col-12 mt-2" onClick={() => this.setState({ imageUrl: '' })}>
+                                        Cancel
+                                    </div>
+                                ) : null}
+
+
                                 <div className="btn btn-outline-danger col-6 mt-2"><i class="far fa-heart"></i>  Follow</div>
                                 <Link className="btn btn-outline-danger col mt-2 ml-2" to={"/profile/" + this.props.id + "/chat"}>
                                     Chat

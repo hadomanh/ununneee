@@ -65,6 +65,7 @@
 .chat-label {
     display: flex;
 }
+
 .chat-label h2 {
     margin-top: 5px;
     margin-left: 15px;
@@ -92,4 +93,3 @@
     background-color: indigo;
     color: white;
 }
-
