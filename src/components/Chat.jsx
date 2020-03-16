@@ -74,6 +74,7 @@ const Chat = (props) => {
                     <input className="form-control" type="search" placeholder="Search contact..." />
                     <hr />
                     <ul className="chat-contact-list">
+                        {console.log("socket:", socket.id)}
                         <ChatContact />
                         <ChatContact />
                         <ChatContact />
@@ -105,9 +106,9 @@ const Chat = (props) => {
                         
                         {messages.map(item => {
                             if (item.senderId === id) {
-                                return <RightMessage time="3:30 pm" message={item.content} />
+                                return <RightMessage name={item.senderId} time="3:30 pm" message={item.content} />
                             } else {
-                                return <LeftMessage time="3:30 pm" message={item.content} />
+                                return <LeftMessage name={item.senderId} time="3:30 pm" message={item.content} />
                             }
                         })}
 
