@@ -193,7 +193,7 @@ class SideBar extends Component {
                                 ) : null}
 
 
-                                <div className="btn btn-outline-danger col-6 mt-2"><i class="far fa-heart"></i>  Follow</div>
+                                <div className="btn btn-outline-danger col-6 mt-2"><i className="far fa-heart"></i>  Follow</div>
                                 <Link className="btn btn-outline-danger col mt-2 ml-2" to={"/profile/" + this.props.id + "/chat"}>
                                     Chat
                                 </Link>
