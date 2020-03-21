@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import ChatContact from './ChatContact';
+import ChatContact from './Chat/ChatContact';
 import LeftMessage from './Chat/LeftMessage';
 import RightMessage from './Chat/RightMessage';
-
 import ScrollToBottom from 'react-scroll-to-bottom';
-
 import openSocket from 'socket.io-client';
+import {
+    NavLink
+} from "react-router-dom";
+import _ from 'lodash';
 const socket = openSocket('http://localhost:5000');
 
 const Chat = (props) => {
 
-    const [id, setId] = useState("");
-    const [isTyping, setIsTyping] = useState(false);
+    const [id, setId] = useState(socket.id);
+    const [isTyping, setIsTyping] = useState('');
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
+    const [clients, setClients] = useState([]);
+    const [receiverId, setReceiverId] = useState("");
 
     const sendMessage = (event) => {
         event.preventDefault();
@@ -22,6 +26,7 @@ const Chat = (props) => {
 
         var newMessage = {
             senderId: id,
+            receiverId: receiverId,
             content: event.target.value
         }
 
@@ -35,25 +40,32 @@ const Chat = (props) => {
         console.log(message);
 
         setMessage(message);
-
-        socket.emit('typing', "hadm");
+        socket.emit('typing', receiverId);
     }
 
     useEffect(() => {
-        socket.on('join', clientId => {
-            setId(clientId);
+        socket.on('connect', () => {
+            console.log("socketID", socket.id);
+            setId(socket.id);
         });
     });
 
     useEffect(() => {
-        socket.on('typing', name => {
-            setIsTyping(true);
+        socket.on('newClient', clients => {
+            console.log("clients", _.difference(clients, [id]));
+            setClients(_.difference(clients, [id]));
+        });
+    });
+
+    useEffect(() => {
+        socket.on('typing', typer => {
+            setIsTyping(typer);
         });
     });
 
     useEffect(() => {
         socket.on('message', (data) => {
-            setIsTyping(false);
+            setIsTyping('');
             setMessages([...messages, data]);
 
             console.log(data)
@@ -74,22 +86,9 @@ const Chat = (props) => {
                     <input className="form-control" type="search" placeholder="Search contact..." />
                     <hr />
                     <ul className="chat-contact-list">
-                        {console.log("socket:", socket.id)}
-                        <ChatContact />
-                        <ChatContact />
-                        <ChatContact />
-                        <ChatContact />
-                        <ChatContact />
-                        <ChatContact />
-                        <ChatContact />
-                        <ChatContact />
-                        <ChatContact />
-                        <ChatContact />
-                        <ChatContact />
-                        <ChatContact />
-                        <ChatContact />
-                        <ChatContact />
-                        <ChatContact />
+                        {clients.map((item) => {
+                            return (<ChatContact clientId={item} setReceiver={()=>setReceiverId(item)}  />)
+                        })}
                     </ul>
 
                 </div>
@@ -99,11 +98,12 @@ const Chat = (props) => {
                         <div className="chat-contact-cover">
                             <img src="assets/images/game/game9.jpg" alt="" />
                         </div>
-                        <h2>Do Manh Ha</h2>
+                        {/* <h2>Do Manh Ha</h2> */}
+                        <i className="ml-5">{receiverId}</i>
                     </div>
                     <hr />
                     <ScrollToBottom className="chat-window">
-                        
+
                         {messages.map(item => {
                             if (item.senderId === id) {
                                 return <RightMessage name={item.senderId} time="3:30 pm" message={item.content} />
@@ -115,7 +115,7 @@ const Chat = (props) => {
                         {(
                             () => {
                                 if (isTyping) {
-                                    return <LeftMessage message="typing..." />
+                                    return <LeftMessage message={isTyping + " typing..."} />
                                 }
                             }
                         )()}

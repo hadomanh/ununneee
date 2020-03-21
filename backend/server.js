@@ -73,18 +73,27 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
 
         io.on('connection', socket => {
             socket.removeAllListeners();
-            console.log("New client ", socket.id);
-            io.to(socket.id).emit('join', socket.id);
 
-            socket.on('typing', name => {
-                socket.broadcast.emit('typing', name);
+            console.log("New client", socket.id);
+            console.log("Clients count", io.engine.clientsCount);
+            console.log(Object.keys(io.sockets.sockets));
+            
+            io.to(socket.id).emit('newClient', Object.keys(io.sockets.sockets));
+
+            socket.broadcast.emit('newClient', Object.keys(io.sockets.sockets));
+
+            socket.on('typing', receiverId => {
+                io.to(receiverId).emit('typing', socket.id);
             });
 
             socket.on('send', data => {
-                socket.broadcast.emit('message', data);
+                io.to(data.receiverId).emit('message', data);
             });
 
-            socket.on('disconnect', () => console.log("Client off", socket.id));
+            socket.on('disconnect', () => {
+                socket.broadcast.emit('newClient', Object.keys(io.sockets.sockets));
+                console.log("Client off", socket.id);
+            });
 
         });
 

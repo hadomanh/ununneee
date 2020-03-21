@@ -595,6 +595,52 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 
+.df-cancel-btn {
+  background-color: #5c5c5c;
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 25px;
+  height: 50px;
+  font-weight: 400;
+  font-family: "Qanto";
+  padding: 15px 30px;
+  text-transform: uppercase;
+  border-radius: 0px;
+  position: relative;
+  margin-left: 20px;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.df-cancel-btn:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.df-cancel-btn:hover {
+  background-color: #f64140;
+  color: #ffffff;
+}
+
+@media only screen and (max-width: 767px) {
+  .df-cancel-btn {
+    font-size: 14px;
+    line-height: 30px;
+    height: 45px;
+    padding: 10px 25px;
+  }
+  .df-cancel-btn:hover::before {
+    left: 6px;
+    top: 6px;
+  }
+  .df-cancel-btn:hover::after {
+    left: -6px;
+    top: -6px;
+  }
+}
+
 /*-- 
     - Page Banner Section
 ------------------------------------------*/
@@ -7100,6 +7146,20 @@ header.header.header-static {
   padding: 10px 20px;
   font-size: 14px;
   height: 45px;
+  color: #151515;
+  margin-bottom: 15px;
+}
+
+.checkout-form .my-textarea {
+  width: 100%;
+  font-family: sans-serif;
+  background-color: transparent;
+  border: 1px solid #999999;
+  border-radius: 0;
+  line-height: 23px;
+  padding: 10px 20px;
+  font-size: 14px;
+  height: 100px;
   color: #151515;
   margin-bottom: 15px;
 }
