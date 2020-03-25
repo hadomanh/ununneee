@@ -1,6 +1,8 @@
 const route = require('express').Router();
 const userModel = require('./user.schema');
 const bcryptjs = require('bcryptjs');
+const joi = require('@hapi/joi');
+const pageSize = 2;
 route.get('/', (req, res) => {
     console.log('session ne', req.session);
 })
@@ -62,22 +64,11 @@ route.post('/verify', (req, res) => {
 
 
 route.post('/uploadAva', (req, res) => {
-    console.log('upload avatar req.session', req.session);
-    console.log('req.body upload avatar', req.body);
     var email='';
     if (req.session.currentUser) {
-        console.log('loggin bang local');
         email=req.session.currentUser.email;
-        // const doc1=userModel.findOneAndUpdate({email:req.session.currentUser.email},{
-        //     avaUrl:req.body.imageUrl
-        // })
-        // console.log('check',doc1);
-        console.log('imageurlllll',req.body.imageUrl);
-        // userModel.update({email:req.session.currentUser.email},{$set: { "avaUrl" : req.body.imageUrl}});
         userModel.findOne({email:req.session.currentUser.email},(err,data)=>{
-            console.log('user find',data);
             id=data.id;
-            console.log(id);
             userModel.findByIdAndUpdate(id,{avaUrl:req.body.imageUrl},function(err,data){
                 console.log('findbyidandupadet',data);
             })
@@ -87,22 +78,14 @@ route.post('/uploadAva', (req, res) => {
         })
     }
     else if (req.session.passport) {
-            console.log('loggin bang fb gg', req.user.email);
-        //    const doc2= userModel.findOneAndUpdate({email:req.user.email},{
-        //         avaUrl:req.body.imageUrl
-        //     })
-        //     console.log('check2',doc2)
         userModel.findOne({email:req.user.email},(err,data)=>{
-            console.log('user find',data);
+  
             id=data.id;
             console.log(id);
             userModel.findByIdAndUpdate(id,{avaUrl:req.body.imageUrl},function(err,data){
                 console.log('findbyidandupadet',data);
             })
         })
-
-        // userModel.update({email:req.user.email},{$set: { avaUrl : req.body.imageUrl}});
-        console.log('imageurlllll',req.body.imageUrl);
            email=req.user.email;
            res.status(200).json({
             success: true,
@@ -114,7 +97,7 @@ route.post('/uploadAva', (req, res) => {
                 message: 'please login',
             })
     }
-    console.log('email user upload avatar',email);
+
     
 
 
@@ -155,6 +138,56 @@ route.post('/', (req, res) => {
         }
     })
 })
+
+
+
+
+route.get('/pagination', async (req, res) => {
+    try {
+        const pageNumber = Number(req.query.pageNumber);
+        
+        const validateSchema = joi.object().keys({
+            pageNumber: joi.number().min(1),
+            pageSize: joi.number().min(1).max(50),
+        });
+        const validateResult = validateSchema.validate({
+            pageNumber: pageNumber,
+            pageSize: pageSize,
+        });
+        if (validateResult.error) {
+            const error = validateResult.error.details[0];
+            res.status(400).json({
+                success: false,
+                message: error.message,
+            });
+        } else {
+            const result = await userModel.find({})
+                // .sort({ createdAt: -1 })
+                .skip((pageNumber - 1) * pageSize)
+                .limit(pageSize)
+                .lean();
+
+            const total = await userModel.find({}).countDocuments();
+
+            res.status(200).json({
+                success: true,
+                data: {
+                    data: result,
+                    total: total,
+                },
+            });
+
+        }
+    }
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        })
+    }
+});
+
+
 
 module.exports = route;
 

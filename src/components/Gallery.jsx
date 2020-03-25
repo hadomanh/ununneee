@@ -1,10 +1,37 @@
 import React, { Component } from 'react';
 import GalleryItem from './GalleryItem';
 import Slider from "react-slick";
-
+import axios from 'axios';
+const pageNumber=1;
 class Gallery extends Component {
-    render() {
 
+    state = {
+        data: [],
+        total: 0,
+        currentPageNumber: 1,
+    };
+
+ 
+    componentWillMount() {
+		this.getData(1);
+	}
+
+	getData = async pageNumber => {
+		// try {
+            axios({
+                method:'get',
+                url:`http://localhost:5000/users/pagination?pageNumber=${pageNumber}`,
+            })
+            .then(function(response){
+                console.log('get user',response);
+            })
+            .catch(function (error) {
+                //handle error
+                if(error) 
+                console.log(error);
+        })
+	};
+    render() {
         const settings = {
             classname: "game-slide",
             swipeToSlide: true,
@@ -30,6 +57,10 @@ class Gallery extends Component {
                 },
             ]
         };
+
+
+
+
 
         return (
             <div className="new-game-area section pb-50 pb-lg-30 pb-md-20 pb-sm-10 pb-xs-0">
