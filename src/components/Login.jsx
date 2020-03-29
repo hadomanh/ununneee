@@ -36,29 +36,17 @@ class Login extends Component {
                 //handle success
                 if (response.status === 200) {
                     const info = {
-                        'name': response.data.data.name,
-                        'email': response.data.data.email,
+                        name: response.data.data.name,
+                        email: response.data.data.email,
+                        id: response.data.data.id,
                     };
                     window.localStorage.setItem("info", JSON.stringify(info));
                     window.location.href = '/';
                 }
             })
-
-                .then(function (response) {
-                    //handle success
-                    if (response.status === 200) {
-                        const info = {
-                            name: response.data.data.name,
-                            email: response.data.data.email,
-                            id: response.data.data.id,
-                        };
-                        window.localStorage.setItem("info", JSON.stringify(info));
-                        window.location.href = '/';
-                    }
-                })
-                .catch(function (error) {
-                    //handle error
-                    if(error) 
+            .catch(function (error) {
+                //handle error
+                if (error)
 
                     console.log(error);
             })
@@ -81,7 +69,6 @@ class Login extends Component {
         })
             .then(response => {
                 // handle success
-                console.log("login front-end", response);
                 var info = {
                     name: response.data.name,
                     email: response.data.email,
