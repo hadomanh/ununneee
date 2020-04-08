@@ -2,17 +2,10 @@ const route = require('express').Router();
 const userModel = require('./user.schema');
 const bcryptjs = require('bcryptjs');
 const joi = require('@hapi/joi');
-const pageSize = 2;
+const pageSize = 3;
 route.get('/', (req, res) => {
-    console.log('session ne', req.session);
+    
 })
-
-
-route.get('/get-fighter-by-id', (req, res) => {
-    console.log('fightId ne', req.query.fighterId);
-})
-
-
 
 route.post('/verify', (req, res) => {
     const email = req.body.email;
@@ -39,7 +32,7 @@ route.post('/verify', (req, res) => {
                         email: data.email,
                         id:data._id,
                     };
-                    console.log('id',data.id);
+                    console.log('id', data.id);
                     console.log(req.session);
                     res.status(200).json({
                         success: true,
@@ -47,7 +40,7 @@ route.post('/verify', (req, res) => {
                         data: {
                             email: data.email,
                             name: data.name,
-                            id:data.id,
+                            id: data.id,
                         }
                     })
                 }
@@ -69,7 +62,7 @@ route.post('/addPost',(req,res)=>{
 
 
 route.post('/uploadAva', (req, res) => {
-    var email='';
+    var email = '';
     if (req.session.currentUser) {
         email=req.session.currentUser.email;
         userModel.findOne({email:req.session.currentUser.email},(err,data)=>{
@@ -83,32 +76,27 @@ route.post('/uploadAva', (req, res) => {
         })
     }
     else if (req.session.passport) {
-        userModel.findOne({email:req.user.email},(err,data)=>{
-  
-            id=data.id;
+        userModel.findOne({ email: req.user.email }, (err, data) => {
+
+            id = data.id;
             console.log(id);
             userModel.findByIdAndUpdate(id,{avaUrl:req.body.imageUrl},function(err,data){
                 // console.log('findbyidandupadet',data);
             })
         })
-           email=req.user.email;
-           res.status(200).json({
+        email = req.user.email;
+        res.status(200).json({
             success: true,
         })
-        }
-        else {
-            res.status(403).json({
-                success:false,
-                message: 'please login',
-            })
+    }
+    else {
+        res.status(403).json({
+            success: false,
+            message: 'please login',
+        })
     }
 
-    
-
-
 })
-
-
 
 route.post('/', (req, res) => {
     const email = req.body.email;
@@ -161,7 +149,7 @@ route.post('/updateprofile',(req,res)=>{
 route.get('/pagination', async (req, res) => {
     try {
         const pageNumber = Number(req.query.pageNumber);
-        
+
         const validateSchema = joi.object().keys({
             pageNumber: joi.number().min(1),
             pageSize: joi.number().min(1).max(50),

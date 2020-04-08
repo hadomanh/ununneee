@@ -18,6 +18,8 @@ import Profile from './components/Profile';
 import Game from './components/Game';
 import BannerSlider from './components/BannerSlider';
 import CreatePost  from './components/CreatePost'
+import PlayerList from './components/PlayerList';
+
 
 function App() {
 
@@ -56,6 +58,11 @@ function App() {
             <Route path="/login">
               <Banner detail="login" />
               <Login />
+            </Route>
+            
+            <Route path="/list">
+              <Banner detail="list" />
+              <Route path="/list/:page" component={PlayerList} />
             </Route>
 
             
