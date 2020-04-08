@@ -17,6 +17,7 @@ import Newsletter from './components/Newsletter';
 import Profile from './components/Profile';
 import Game from './components/Game';
 import BannerSlider from './components/BannerSlider';
+import CreatePost  from './components/CreatePost'
 import PlayerList from './components/PlayerList';
 
 
@@ -39,9 +40,13 @@ function App() {
     <div className="App">
       <div id="main-wrapper">
 
-        <Router>
-          <Header />
 
+
+
+        <Router>
+
+          
+          <Header />
           <Switch>
             <Route exact path="/" >
               <BannerSlider/>
@@ -60,6 +65,9 @@ function App() {
               <Route path="/list/:page" component={PlayerList} />
             </Route>
 
+            
+
+
             <Route path="/register">
               <Banner detail="register" />
               <Register />
@@ -70,6 +78,9 @@ function App() {
               <Route path="/profile/:id" component={Profile} />
             </Route>
 
+            <Route path="/create-post">
+              <CreatePost></CreatePost>
+            </Route>
           </Switch>
 
 
