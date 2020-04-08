@@ -60,18 +60,12 @@ class SideBar extends Component {
                                 if (error)
                                     console.log(error);
                             })
-                            .finally(() => {
-
-                            });
                     })
                     .catch(function (error) {
                         //handle error
                         if (error)
                             console.log(error);
                     })
-                    .finally(() => {
-
-                    });
 
             }
             catch (error) {

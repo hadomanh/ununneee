@@ -13,7 +13,11 @@ const UserSchema = new mongoose.Schema({
         type:String,
         require:true,
     },
+    address1: String,
+    address2: String,
     bio: String,
+    phone:String,
+    gender:Number,
     pic: Array,
     avaUrl:{
         type:String,

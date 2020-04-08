@@ -37,6 +37,7 @@ route.post('/verify', (req, res) => {
                 else {
                     req.session.currentUser = {
                         email: data.email,
+                        id:data._id,
                     };
                     console.log('id',data.id);
                     console.log(req.session);
@@ -62,6 +63,10 @@ route.post('/verify', (req, res) => {
     })
 })
 
+route.post('/addPost',(req,res)=>{
+    console.log('req.body cua addPost',req.body);
+})
+
 
 route.post('/uploadAva', (req, res) => {
     var email='';
@@ -70,7 +75,7 @@ route.post('/uploadAva', (req, res) => {
         userModel.findOne({email:req.session.currentUser.email},(err,data)=>{
             id=data.id;
             userModel.findByIdAndUpdate(id,{avaUrl:req.body.imageUrl},function(err,data){
-                console.log('findbyidandupadet',data);
+                // console.log('findbyidandupadet',data);
             })
         })
         res.status(200).json({
@@ -83,7 +88,7 @@ route.post('/uploadAva', (req, res) => {
             id=data.id;
             console.log(id);
             userModel.findByIdAndUpdate(id,{avaUrl:req.body.imageUrl},function(err,data){
-                console.log('findbyidandupadet',data);
+                // console.log('findbyidandupadet',data);
             })
         })
            email=req.user.email;
@@ -139,7 +144,18 @@ route.post('/', (req, res) => {
     })
 })
 
+route.post('/updateprofile',(req,res)=>{
+    console.log(req.body);
+    userModel.findByIdAndUpdate(req.body.id,{
+        name:req.body.name,
+        address1:req.body.address1,
+        address2:req.body.address2,
+        bio:req.body.bio
+    },function(err,data){
+        console.log('findbyidandupadet',data);
+    })
 
+})
 
 
 route.get('/pagination', async (req, res) => {
