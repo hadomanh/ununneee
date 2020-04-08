@@ -17,6 +17,7 @@ import Newsletter from './components/Newsletter';
 import Profile from './components/Profile';
 import Game from './components/Game';
 import BannerSlider from './components/BannerSlider';
+import PlayerList from './components/PlayerList';
 
 
 function App() {
@@ -52,6 +53,11 @@ function App() {
             <Route path="/login">
               <Banner detail="login" />
               <Login />
+            </Route>
+            
+            <Route path="/list">
+              <Banner detail="list" />
+              <Route path="/list/:page" component={PlayerList} />
             </Route>
 
             <Route path="/register">

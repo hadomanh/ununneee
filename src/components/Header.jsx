@@ -75,12 +75,7 @@ class Header extends Component {
                                                 <li><a href="index-landing.html">Home Landing</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="games.html">games</a>
-                                            <ul className="sub-menu">
-                                                <li><a href="games.html">Games</a></li>
-                                                <li><a href="games-details.html">Games Details</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><NavLink to="/list/1" activeStyle={{ color: "red" }}>PLAYERS</NavLink></li>
                                         <li><a href="video.html">Highlights</a></li>
                                         <li><a href="forum.html">Forums</a>
                                             <ul className="sub-menu">
