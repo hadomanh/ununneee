@@ -8,7 +8,7 @@ class Banner extends Component {
                     <div className="row">
                         <div className="col-12">
                             <div className="page-content text-center">
-                                <h1>KINGS OF THE <br /> WARRIORS</h1>
+                                <h1>BE THE KING OF <br /> WARRIORS</h1>
                                 <a className="df-btn" href="kenh14.vn">Buy now</a>
                                 <ul className="page-breadcrumb">
                                     <li>Home</li>

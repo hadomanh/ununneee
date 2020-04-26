@@ -1,122 +1,42 @@
 import React, { Component } from 'react';
 import PlayedGame from './PlayedGame';
-import axios from 'axios';
+import RenterUtilsBtn from './RenterUtilsBtn';
+import UserUtilsBtn from './UserUtilsBtn';
 import {
     Link
 } from "react-router-dom";
+import axios from 'axios';
 
-const maxFileSize = 5000000;
-const imageFileRegex = /\.(gif|jpg|jpeg|tiff|png)$/i;
 
 class SideBar extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            id: this.props.id,
             file: undefined,
             imageURL: '',
             errormessage: '',
+            status: "waiting"
         }
     }
-    
-    handleUploadAva = (event) => {
-        event.preventDefault();
-        var that = this;
-        if (!this.state.file) {
-            this.setState({
-                errormessage: 'please upload image',
-            })
-        } else {
-            try {
-                const formData = new FormData();
-                formData.append('image', this.state.file);
-                
-                axios({
-                    method: 'post',
-                    url: 'http://localhost:5000/uploads/photos',
-                    withCredentials: true,
-                    data: formData
-                })
-                    .then(function (response) {
-                        //handle success
-                        axios({
-                            method: 'post',
-                            url: 'http://localhost:5000/users/uploadAva',
-                            withCredentials: true,
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            data: JSON.stringify({
 
-                                imageUrl: response.data.data,
-
-                            }),
-                        })
-                            .then(function (response) {
-                                //handle success  
-                            })
-                            .catch(function (error) {
-                                //handle error
-                                if (error)
-                                    console.log(error);
-                            })
-                            .finally(() => {
-
-                            });
-                    })
-                    .catch(function (error) {
-                        //handle error
-                        if (error)
-                            console.log(error);
-                    })
-                    .finally(() => {
-
-                    });
-
-            }
-            catch (error) {
+    componentDidMount() {
+        axios({
+            method: 'get',
+            url: 'http://localhost:5000/users/' + this.state.id,
+            withCredentials: true,
+        }).then((response) => {
+            if (response.status === 200) {
                 this.setState({
-                    errormessage: error.message,
-                })
-            }
-            this.setState({
-                errormessage: '',
-            })
-        }
-
-
-    }
-
-    handleFileChange = (event) => {
-        const file = event.target.files[0];
-
-        if (!imageFileRegex.test(file.name)) {
-            this.setState({
-                errormessage: 'invalid file',
-            });
-
-        }
-        else if (file.size > maxFileSize) {
-            this.setState({
-                errormessage: 'file is too large',
-            });
-
-        } else {
-            //file reader để cho preview
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-            fileReader.onload = () => {
-                //filereader.result
-                this.setState({
-                    errormessage: '',
-                    file: file,
-                    imageUrl: fileReader.result,
+                    name: response.data.data.name,
+                    email: response.data.data.email,
+                    avaUrl: response.data.data.avaUrl,
                 });
-            };
-
-        }
-
+            }
+        })
     }
+
 
     render() {
         return (
@@ -126,86 +46,48 @@ class SideBar extends Component {
                     <div className="single-sidebar-widget mb-45">
                         <div className="single-featured-game mb-20">
                             <div className="game-img" >
-                                <img src="assets/images/game/game9.jpg" alt="" />
-                                <a className="game-title" href="kenh14.vn">tanhng</a>
+                                <img src={"http://localhost:5000/" + this.state.avaUrl} alt="" />
+                                <p className="game-title">{this.state.id}</p>
                             </div>
                         </div>
-                        <h3>Tien Anh Nguyen</h3>
-                        <h5>D.O.B: 24/05/1999</h5>
-                    </div>
-                    {/*Single Sidebar Widget End*/}
-                    {/*Single Sidebar Widget Start*/}
-                    <div className="single-sidebar-widget mb-45">
-                        <h3>follow me</h3>
-                        <div className="sidebar-social">
-                            <ul>
-                                <li><a className="facebook" href="kenh14.vn"><i className="icofont-facebook" /></a></li>
-                                <li><a className="youtube" href="kenh14.vn"><i className="icofont-youtube-play" /></a></li>
-                                <li><a className="instagram" href="kenh14.vn"><i className="icofont-instagram" /></a></li>
-                                <li><a className="twitter" href="kenh14.vn"><i className="icofont-twitter" /></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    {/*Single Sidebar Widget End*/}
+                        <h3>
+                            {this.state.name}
 
-                    {/*Single Sidebar Widget Start*/}
-                    <div className="single-sidebar-widget mb-45">
-                        <h3>Setting</h3>
 
-                        <div className="btn btn-group">
-
-                            <div className="row">
-
-                                {this.state.imageUrl ? null :
-                                    <div className="upload-btn-wrapper btn btn-danger col-12">
-                                        Upload picture
-                                        <input
-                                            type="file"
-                                            accept="image/*"
-                                            filename={this.state.file ? this.state.file.name : ''}
-                                            onChange={this.handleFileChange}
-                                        />
-                                    </div>
+                            {(
+                                () => {
+                                    if (this.state.status === "working") {
+                                        return (
+                                            <span style={{ color: "red", marginLeft: "10px" }}>
+                                                working
+                                            </span>
+                                        )
+                                    } else {
+                                        return (
+                                            <span style={{ color: "green", marginLeft: "10px" }}>
+                                                waiting
+                                            </span>
+                                        )
+                                    }
                                 }
+                            )()}
 
-                                {this.state.imageUrl ? (
-                                    <div style={{
-                                        backgroundImage: `url(${this.state.imageUrl})`,
-                                        backgroundRepeat: 'no-repeat',
-                                        backgroundSize: 'cover',
-                                        width: '100%',
-                                        height: '400px',
-                                    }}></div>
-                                ) : null}
+                        </h3>
 
-                                {this.state.imageUrl ? (
-                                    <div
-                                        className="btn btn-success col-12 mt-2"
-                                        onClick={(event) => this.handleUploadAva(event)} >
-                                        Save picture
-                                    </div>
-                                ) : null}
-
-                                {this.state.imageUrl ? (
-                                    <div className="btn btn-outline-dark col-12 mt-2" onClick={() => this.setState({ imageUrl: '' })}>
-                                        Cancel
-                                    </div>
-                                ) : null}
-
-
-                                <div className="btn btn-outline-danger col-6 mt-2"><i className="far fa-heart"></i>  Follow</div>
-                                <Link className="btn btn-outline-danger col mt-2 ml-2" to={"/profile/" + this.props.id + "/chat"}>
-                                    Chat
-                                </Link>
-                                <div className="btn btn-outline-danger col-6 mt-2">Donate</div>
-                                <Link className="btn btn-outline-danger col mt-2 ml-2" to={"/profile/" + this.props.id + "/blog"}>
-                                    About
-                                </Link>
-                            </div>
-
-                        </div>
+                        <span><b>12</b> follower</span>
+                        <span><b>7</b> following</span>
+                        <span><b>69h</b> completed</span>
                     </div>
-                    {/*Single Sidebar Widget End*/}
+
+                    {(
+                        () => {
+                            if (JSON.parse(localStorage.getItem('info')).id === this.state.id) {
+                                return (<UserUtilsBtn id={this.state.id} toggleStatus={(currentStt)=>this.setState({status: currentStt})} />)
+                            } else {
+                                return (<RenterUtilsBtn id={this.state.id} />)
+                            }
+                        }
+                    )()}
 
                     <div className="single-sidebar-widget mb-45">
                         <h3>most played games</h3>
@@ -217,10 +99,8 @@ class SideBar extends Component {
                             </ul>
                         </div>
                     </div>
-                    {/*Single Sidebar Widget End*/}
 
-                    {/*Single Sidebar Widget Start*/}
-                    <div className="single-sidebar-widget">
+                    <div className="single-sidebar-widget mb-45">
                         <h3>me on instagram:</h3>
                         <div className="sidebar-instagram">
                             <ul>
@@ -234,6 +114,19 @@ class SideBar extends Component {
                         </div>
                     </div>
                     {/*Single Sidebar Widget End*/}
+
+                    <div className="single-sidebar-widget">
+                        <h3>follow me</h3>
+                        <div className="sidebar-social">
+                            <ul>
+                                <li><a className="facebook" href="kenh14.vn"><i className="icofont-facebook" /></a></li>
+                                <li><a className="youtube" href="kenh14.vn"><i className="icofont-youtube-play" /></a></li>
+                                <li><a className="instagram" href="kenh14.vn"><i className="icofont-instagram" /></a></li>
+                                <li><a className="twitter" href="kenh14.vn"><i className="icofont-twitter" /></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

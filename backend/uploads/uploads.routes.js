@@ -20,7 +20,7 @@ uploadsRouter.post('/photos',multerStorage.single('image'), async (req,res)=>{
     fs.renameSync(req.file.path,`${req.file.path}.${ext}`);
     res.status(200).json({
         success:true,
-        data:`/${req.file.filename}.${ext}`
+        data:`${req.file.filename}.${ext}`
     })
 
     //return url
