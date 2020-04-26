@@ -15,11 +15,12 @@ const io = require('socket.io')(server);
 const uploadsRouter = require('./uploads/uploads.routes');
 const passportSetup = require('./passport/google-auth');
 const authRoutes = require('./routes/auth-routes');
-const userRoutes = require('./user/user.routes')
 
 var MessageModel = require('./message/message.schema');
 var ActiveModel = require('./message/active.schema');
 
+const userRoutes = require('./user/user.routes');
+const postRoutes= require('./posts/post.routes');
 
 // connect to mongodb
 // phai co useFindAndModify thi moi dung findoneandupdate dc
@@ -56,14 +57,8 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
         // set up route
         app.use('/auth', authRoutes);
         app.use('/users', userRoutes);
-        app.use('/uploads', uploadsRouter);
-
-        app.get("/test", (req, res) => {
-            console.log('day nhe', req.session);
-            res.status(500).json({
-                success: true,
-            });
-        })
+        app.use('/uploads',uploadsRouter);
+        app.use('/posts',postRoutes);
         server.listen(process.env.PORT || 5000, (err) => {
             if (err)
                 throw err;
