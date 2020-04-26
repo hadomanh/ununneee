@@ -3,8 +3,31 @@ const userModel = require('./user.schema');
 const bcryptjs = require('bcryptjs');
 const joi = require('@hapi/joi');
 const pageSize = 3;
-route.get('/', (req, res) => {
-    
+
+route.get('/:id', (req, res) => {
+    var id = req.params.id
+
+    userModel.findById(id, (err, result) =>{
+        if (err) {
+            res.status(400).json({
+                success: false,
+                message: error.message
+            });
+
+        } else {
+            res.status(200).json({
+                success: true,
+                message: "User founded " + id,
+                data: {
+                    email: result.email,
+                    name: result.name,
+                    avaUrl: result.avaUrl,
+                    id: result._id
+                }
+            })
+        }
+        
+    })
 })
 
 route.post('/verify', (req, res) => {
@@ -41,6 +64,7 @@ route.post('/verify', (req, res) => {
                             email: data.email,
                             name: data.name,
                             id: data.id,
+                            avaUrl: data.avaUrl
                         }
                     })
                 }
@@ -54,7 +78,7 @@ route.post('/verify', (req, res) => {
         }
 
     })
-})
+})  
 
 route.post('/addPost',(req,res)=>{
     console.log('req.body cua addPost',req.body);
@@ -64,11 +88,11 @@ route.post('/addPost',(req,res)=>{
 route.post('/uploadAva', (req, res) => {
     var email = '';
     if (req.session.currentUser) {
-        email=req.session.currentUser.email;
-        userModel.findOne({email:req.session.currentUser.email},(err,data)=>{
-            id=data.id;
-            userModel.findByIdAndUpdate(id,{avaUrl:req.body.imageUrl},function(err,data){
-                // console.log('findbyidandupadet',data);
+        email = req.session.currentUser.email;
+        userModel.findOne({ email: req.session.currentUser.email }, (err, data) => {
+            var id = data.id;
+            userModel.findByIdAndUpdate(id, { avaUrl: req.body.imageUrl }, function (err, data) {
+                console.log('findbyidandupadet', data);
             })
         })
         res.status(200).json({
@@ -77,8 +101,7 @@ route.post('/uploadAva', (req, res) => {
     }
     else if (req.session.passport) {
         userModel.findOne({ email: req.user.email }, (err, data) => {
-
-            id = data.id;
+            var id = data.id;
             console.log(id);
             userModel.findByIdAndUpdate(id,{avaUrl:req.body.imageUrl},function(err,data){
                 // console.log('findbyidandupadet',data);

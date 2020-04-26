@@ -18,6 +18,8 @@ const Chat = (props) => {
     const [messages, setMessages] = useState([]);
     const [clients, setClients] = useState([]);
     const [receiverId, setReceiverId] = useState("");
+    const [email, setEmail] = useState(JSON.parse(localStorage.getItem('info')).email);
+    const [receiverEmail, setReceiverEmail] = useState('');
 
     const sendMessage = (event) => {
         event.preventDefault();
@@ -26,7 +28,9 @@ const Chat = (props) => {
 
         var newMessage = {
             senderId: id,
+            senderEmail: email,
             receiverId: receiverId,
+            receiverEmail: receiverEmail,
             content: event.target.value
         }
 
@@ -37,25 +41,51 @@ const Chat = (props) => {
     }
 
     const handleChange = (message) => {
-        console.log(message);
-
         setMessage(message);
-        socket.emit('typing', receiverId);
+        var data = {
+            senderEmail: email,
+            receiverId: receiverId
+        }
+        socket.emit('typing', data);
     }
 
     useEffect(() => {
         socket.on('connect', () => {
-            console.log("socketID", socket.id);
             setId(socket.id);
+            var newClient = {
+                email: email,
+                id: socket.id
+            }
+            socket.emit('join', newClient);
+
         });
     });
 
     useEffect(() => {
-        socket.on('newClient', clients => {
-            console.log("clients", _.difference(clients, [id]));
-            setClients(_.difference(clients, [id]));
+        socket.on('activeUsers', data => {
+            setClients(_.differenceBy(data, [{ 'socketId': id }], 'socketId'));
         });
     });
+
+    useEffect(() => {
+        socket.emit('previous-message', [email, receiverEmail])
+    }, [receiverEmail])
+
+    useEffect(() => {
+        socket.on('previous-message', data => {
+            console.log('data', data);
+            var prevMessages = []
+            data.map(item => {
+                var newMessage = {
+                    senderEmail: item.senderEmail,
+                    receiverEmail: item.receiverEmail,
+                    content: item.content
+                }
+                prevMessages.push(newMessage)
+            })
+            setMessages(prevMessages);
+        })
+    }, [receiverEmail])
 
     useEffect(() => {
         socket.on('typing', typer => {
@@ -73,7 +103,6 @@ const Chat = (props) => {
 
         return () => {
             socket.emit('disconnect');
-
             socket.off();
         }
 
@@ -87,49 +116,65 @@ const Chat = (props) => {
                     <hr />
                     <ul className="chat-contact-list">
                         {clients.map((item) => {
-                            return (<ChatContact clientId={item} setReceiver={()=>setReceiverId(item)}  />)
+                            return (<ChatContact clientId={item.email}
+                                setReceiver={() => {
+                                    setReceiverId(item.socketId)
+                                    setReceiverEmail(item.email)
+                                }
+
+                                } />)
                         })}
                     </ul>
 
                 </div>
 
-                <div className="col-8">
-                    <div className="chat-label" >
-                        <div className="chat-contact-cover">
-                            <img src="assets/images/game/game9.jpg" alt="" />
-                        </div>
-                        {/* <h2>Do Manh Ha</h2> */}
-                        <i className="ml-5">{receiverId}</i>
-                    </div>
-                    <hr />
-                    <ScrollToBottom className="chat-window">
+                
 
-                        {messages.map(item => {
-                            if (item.senderId === id) {
-                                return <RightMessage name={item.senderId} time="3:30 pm" message={item.content} />
-                            } else {
-                                return <LeftMessage name={item.senderId} time="3:30 pm" message={item.content} />
-                            }
-                        })}
+                {(
+                    () => {
+                        if (receiverEmail != '')
+                            return (
+                                <div className="col-8">
+                                    <div className="chat-label" >
+                                        <div className="chat-contact-cover">
+                                            <img src="assets/images/game/game9.jpg" alt="" />
+                                        </div>
+                                        {/* <h2>Do Manh Ha</h2> */}
+                                        <i className="ml-5">{receiverEmail}</i>
+                                    </div>
+                                    <hr />
+                                    <ScrollToBottom className="chat-window">
 
-                        {(
-                            () => {
-                                if (isTyping) {
-                                    return <LeftMessage message={isTyping + " typing..."} />
-                                }
-                            }
-                        )()}
+                                        {messages.map(item => {
+                                            if (item.senderEmail === email) {
+                                                return <RightMessage name={item.senderEmail} time="3:30 pm" message={item.content} />
+                                            } else {
+                                                return <LeftMessage name={item.senderEmail} time="3:30 pm" message={item.content} />
+                                            }
+                                        })}
 
-                    </ScrollToBottom>
+                                        {(
+                                            () => {
+                                                if (isTyping) {
+                                                    return <LeftMessage message={isTyping + " typing..."} />
+                                                }
+                                            }
+                                        )()}
 
-                    {/* <form> */}
-                    <input autoComplete="off" className="form-control mt-3" type="text" placeholder="Typing here..."
-                        value={message}
-                        onChange={(event) => handleChange(event.target.value)}
-                        onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null} />
-                    {/* </form> */}
+                                    </ScrollToBottom>
 
-                </div>
+                                    {/* <form> */}
+                                    <input autoComplete="off" className="form-control mt-3" type="text" placeholder="Typing here..."
+                                        value={message}
+                                        onChange={(event) => handleChange(event.target.value)}
+                                        onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null} />
+                                    {/* </form> */}
+
+                                </div>
+
+                            )
+                    }
+                )()}
 
             </div>
         </div>

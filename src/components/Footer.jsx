@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Footer extends Component {
     render() {
         return (
-            <footer className="footer-section style-2 section bg-theme" style={{ backgroundImage: 'url(assets/images/bg/footer-bg.jpg)' }}>
+            <footer className="footer-section style-2 section bg-theme mt-50" style={{ backgroundImage: 'url(assets/images/bg/footer-bg.jpg)' }}>
                 {/*Footer Top start*/}
                 <div className="footer-top section pt-80 pt-lg-70 pt-md-60 pt-sm-50 pt-xs-40 pb-80 pb-lg-70 pb-md-60 pb-sm-15 pb-xs-40">
                     <div className="container container-1520">

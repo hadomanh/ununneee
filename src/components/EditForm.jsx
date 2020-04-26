@@ -1,5 +1,45 @@
 import React, { Component } from 'react';
+import Select from 'react-select'
 import axios from 'axios';
+
+const genderOptions = [
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
+]
+
+const gameOptions = [
+    { value: 'dota2', label: 'DOTA 2' },
+    { value: 'csgo', label: 'CS:GO' },
+    { value: 'pubg', label: 'PUBG' },
+]
+
+const customStyles = {
+
+    control: () => ({
+        height: "44px",
+        backgroundColor: "transparent",
+        border: "1px solid #999999",
+        borderRadius: 0,
+        lineHeight: "23px",
+        padding: "10px 20px",
+        fontSize: "14px",
+        color: "#151515",
+        cursor: "default"
+    }),
+
+    indicatorsContainer: () => ({
+        display: "none"
+
+    }),
+
+    indicatorSeparator: () => ({
+        display: "none"
+    }),
+
+    valueContainer: () => ({
+
+    }),
+}
 
 class EditForm extends Component {
 
@@ -90,14 +130,14 @@ class EditForm extends Component {
         loadScript("assets/js/plugins.js")
         loadScript("assets/js/main.js")
     }
-    
+
     render() {
 
         return (
             <form className="col-lg-8 order-lg-2 order-1 checkout-form" onSubmit={this.handleFormSubmit}>
                 <div id="billing-form" className="mb-10">
                     <h4 className="checkout-title">Profile</h4>
-                    <div className="row">
+                    <form className="row">
                         <div className="col-md-6 col-12 mb-20">
                             <label>Name*</label>
                             <input name='name' onChange={this.handleChange} type="text" placeholder="Name" />
@@ -114,26 +154,7 @@ class EditForm extends Component {
 
                         <div className="col-md-6 col-12 mb-20">
                             <label>Gender*</label>
-                            {/* <select        
-                                value={this.state.gender} 
-                                onChange={(event)=>this.handleSelected(event)}   
-                                className="form-control"
-                                >
-
-                                <option value="a" >Male</option>
-                                <option value="b" >Female</option>
-                                <option value="c" >Male3</option>
-                                <option value="d" >Female3</option>
-                                <option value="e" >Male2</option>
-                                <option value="f" >Female2</option>
-                                <option value="g" >Male1</option>
-                                <option value="h" >Female1</option>
-                            </select> */}
-                                    <select className="form-control" onChange={(event)=>this.handleSelected(event)}>
-                                        <option selected value="1">None</option>
-                                        <option value="2">High - Low</option>
-                                        <option value="3">Low - High</option>
-                                    </select>
+                            <Select options={genderOptions} styles={customStyles} />
                         </div>
 
                         <div className="col-md-6 col-12 mb-20">
@@ -148,20 +169,31 @@ class EditForm extends Component {
                             <label>Bio</label>
                             <textarea name='bio' onChange={this.handleChange} className="my-textarea" placeholder="Something"/>
                         </div>
+
+                        <div className="col-12 mb-20">
+                            <label>Game*</label>
+                            <Select
+                                defaultValue={[gameOptions[2]]}
+                                isMulti
+                                options={gameOptions}
+                                classNamePrefix="select"
+                            />
+                        </div>
+
                         <div className="col-12 mb-20">
                             <label>Address*</label>
                             <input name='address1' onChange={this.handleChange} type="text" placeholder="Address line 1" />
                             <input name='address2' onChange={this.handleChange} type="text" placeholder="Address line 2" />
                         </div>
-                        
+
                         <div className="col-12 mb-20">
                             <div className="check-box">
                                 <input type="checkbox" id="create_account" />
                                 <label htmlFor="create_account">Do something?</label>
                             </div>
-                            
+
                         </div>
-                    </div>
+                    </form>
                 </div>
                 
                 {/* <div type='submit' className="place-order df-btn">Save</div> */}

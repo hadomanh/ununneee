@@ -23,26 +23,6 @@ class SocialProfile extends Component {
                 <div className="row">
                     <div className="col-12">
                         <div className="game-image-gallery-wrap">
-                            {/* <div className="game-image-large">
-                                <div className="game-image-full">
-                                    <img src="assets/images/game/game5.jpg" alt="" />
-                                </div>
-                                <div className="game-image-full">
-                                    <img src="assets/images/game/game10.jpg" alt="" />
-                                </div>
-                                <div className="game-image-full">
-                                    <img src="assets/images/game/game7.jpg" alt="" />
-                                </div>
-                                <div className="game-image-full">
-                                    <img src="assets/images/game/game8.jpg" alt="" />
-                                </div>
-                            </div> */}
-                            {/* <div className="game-image-thumbs">
-                                <div className="sm-image"><img src="assets/images/game/game5.jpg" alt="product image thumb" /></div>
-                                <div className="sm-image"><img src="assets/images/game/game10.jpg" alt="product image thumb" /></div>
-                                <div className="sm-image"><img src="assets/images/game/game7.jpg" alt="product image thumb" /></div>
-                                <div className="sm-image"><img src="assets/images/game/game8.jpg" alt="product image thumb" /></div>
-                            </div> */}
 
                             <Slider  className="game-image-large" {...settings}>
                                 <div className="game-image-full">
@@ -59,9 +39,8 @@ class SocialProfile extends Component {
                                 </div>
                             </Slider>
 
-                            <div className="game-description mb-45">
-                                <h3>the witchrer 3 reloded</h3>
-                                <p><strong>Need for Sped</strong> rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally tances occur in which toil and pain can procure him some great pleasure pleasure rationally encounter sequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain itsuse it is pain, but because occasionally circumstances occur in which toil and pain can procure </p>
+                            <div className="game-description mb-45 mt-50">
+                                <h3>Biography</h3>
                                 <p>Rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally tances occur in which toil and pain can procure him some great pleasure pleasure rationally encounte</p>
                             </div>
                         </div>

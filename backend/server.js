@@ -12,15 +12,19 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
-const uploadsRouter=require('./uploads/uploads.routes');
+const uploadsRouter = require('./uploads/uploads.routes');
 const passportSetup = require('./passport/google-auth');
 const authRoutes = require('./routes/auth-routes');
+
+var MessageModel = require('./message/message.schema');
+var ActiveModel = require('./message/active.schema');
+
 const userRoutes = require('./user/user.routes');
 const postRoutes= require('./posts/post.routes');
 
 // connect to mongodb
 // phai co useFindAndModify thi moi dung findoneandupdate dc
-mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@localhost:27017/' + process.env.DATABASE + '?authSource=admin', { useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify: false }, (e) => {
+mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@localhost:27017/' + process.env.DATABASE + '?authSource=admin', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, (e) => {
     //FIXME: tim cach viet khac
     if (e)
         throw e;
@@ -65,28 +69,77 @@ mongoose.connect('mongodb://' + process.env.USER + ':' + process.env.PASS + '@lo
             }
         });
 
-        io.on('connection', socket => {
+        io.on('connect', socket => {
             socket.removeAllListeners();
 
             console.log("New client", socket.id);
             console.log("Clients count", io.engine.clientsCount);
             console.log(Object.keys(io.sockets.sockets));
-            
-            io.to(socket.id).emit('newClient', Object.keys(io.sockets.sockets));
 
-            socket.broadcast.emit('newClient', Object.keys(io.sockets.sockets));
+            socket.on('join', newClient => {
+                console.log("newClient", newClient);
 
-            socket.on('typing', receiverId => {
-                io.to(receiverId).emit('typing', socket.id);
+                ActiveModel.create({
+                    email: newClient.email,
+                    socketId: newClient.id
+                }, () => {
+                    ActiveModel.find({}, (err, results) => {
+                        socket.emit('activeUsers', results)
+                        socket.broadcast.emit('activeUsers', results)
+                        console.log("activeUsers", results)
+                    })
+                });
+            })
+
+            socket.on('previous-message', clients => {
+                console.log(clients);
+                MessageModel.find(
+                    {
+                        $or: [
+                            {
+                                senderEmail: clients[0],
+                                receiverEmail: clients[1]
+                            },
+                            {
+                                senderEmail: clients[1],
+                                receiverEmail: clients[0]
+                            },
+                        ]
+                    },
+                    null,
+                    { sort: { time: -1 } },
+                    (err, results) => {
+                        console.log(results)
+                        io.to(socket.id).emit('previous-message', results)
+                    }
+                )
+
+            })
+
+            socket.on('typing', data => {
+                io.to(data.receiverId).emit('typing', data.senderEmail);
             });
 
             socket.on('send', data => {
-                io.to(data.receiverId).emit('message', data);
+                MessageModel.create({
+                    senderEmail: data.senderEmail,
+                    receiverEmail: data.receiverEmail,
+                    content: data.content,
+                }, () => {
+                    console.log("sended!");
+                    console.log(data);
+                    io.to(data.receiverId).emit('message', data);
+                })
             });
 
             socket.on('disconnect', () => {
-                socket.broadcast.emit('newClient', Object.keys(io.sockets.sockets));
-                console.log("Client off", socket.id);
+                ActiveModel.deleteMany({ "socketId": socket.id }, () => {
+                    console.log("Client off", socket.id);
+                    ActiveModel.find({}, (err, results) => {
+                        socket.broadcast.emit('activeUsers', results)
+                        console.log("activeUsers", results)
+                    })
+                })
             });
 
         });

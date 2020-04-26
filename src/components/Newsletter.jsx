@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Newsletter extends Component {
     render() {
         return (
-            <div className="newslatter-section section pb-125 pb-lg-105 pb-md-70 pb-sm-85 pb-xs-50 mt-5">
+            <div className="newslatter-section section pb-125 pb-lg-105 pb-md-70 pb-sm-85 pb-xs-50 mt-50">
                 <div className="container">
                     <div className="row">
                         <div className="col-12">

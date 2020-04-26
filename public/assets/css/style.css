@@ -7526,6 +7526,12 @@ header.header.header-static {
   line-height: 28px;
   margin-bottom: 12px;
 }
+.single-sidebar-widget span {
+  font-size: 15px;
+  line-height: 28px;
+  margin-bottom: 12px;
+  margin-right: 20px;
+}
 
 @media only screen and (min-width: 1200px) and (max-width: 1499px) {
   .single-sidebar-widget h3 {
@@ -7559,7 +7565,7 @@ header.header.header-static {
   object-fit: cover;
 }
 
-.single-sidebar-widget .single-featured-game .game-img a.game-title {
+.single-sidebar-widget .single-featured-game .game-img p.game-title {
   position: absolute;
   bottom: 25px;
   left: 25px;

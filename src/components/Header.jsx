@@ -4,8 +4,16 @@ import axios from 'axios';
 
 class Header extends Component {
 
-    logout = () => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: "",
+            avaUrl: "",
+        }
+    }
+    
 
+    logout = () => {
         window.localStorage.clear();
 
         axios.get('http://localhost:5000/auth/logout')
@@ -36,6 +44,23 @@ class Header extends Component {
         loadScript("assets/js/bootstrap.min.js")
         loadScript("assets/js/plugins.js")
         loadScript("assets/js/main.js")
+
+        if (JSON.parse(localStorage.getItem('info'))) {
+
+            axios({
+                method: 'get',
+                url: 'http://localhost:5000/users/' + JSON.parse(localStorage.getItem('info')).id,
+                withCredentials: true,
+            }).then((response) => {
+                if (response.status === 200) {
+                    this.setState({
+                        id: response.data.data.id,
+                        avaUrl: response.data.data.avaUrl,
+                    });
+                }
+            })
+        }
+
     }
 
 
@@ -89,12 +114,20 @@ class Header extends Component {
                                             () => {
                                                 if (JSON.parse(localStorage.getItem('info')))
                                                     return (
-                                                        <li><a href={'/profile/' + JSON.parse(localStorage.getItem('info')).id} >Profile</a></li>
+                                                        <li>
+                                                            <a href={'/profile/' + this.state.id} >Profile</a>
+                                                            <ul className="sub-menu">
+                                                                <li><a href="kenh14.vn">buy premium</a></li>
+                                                                <li><a href={'/profile/' + this.state.id + '/chat'}>
+                                                                    chat
+                                                                </a></li>
+                                                                <hr />
+                                                                <li><a href="/" >Logout</a></li>
+                                                            </ul>
+                                                        </li>
                                                     )
                                             }
                                         )()}
-
-
 
                                         <li><a href="kenh14.vn">Pages</a>
                                             <ul className="sub-menu">
@@ -118,14 +151,8 @@ class Header extends Component {
                                                     return (
                                                         <li>
                                                             <div className="ava-img mt-3">
-                                                                <img src="assets/images/game/game9.jpg" alt="mini ava" />
+                                                                <img src={"http://localhost:5000/" + this.state.avaUrl} alt="mini ava" />
                                                             </div>
-                                                            <ul className="sub-menu">
-                                                                <li><a href="kenh14.vn">buy premium</a></li>
-                                                                <li><a href="kenh14.vn">setting</a></li>
-                                                                <hr />
-                                                                <li><a href="/" >Logout</a></li>
-                                                            </ul>
                                                         </li>
                                                     )
                                             }
@@ -135,8 +162,7 @@ class Header extends Component {
                                     </ul>
                                 </nav>
                             </div>
-                            {/*Menu end*/}
-                            {/*Header Right Wrap*/}
+
                             <div className="col-12 col-md-9 order-md-2 order-lg-3 col-lg-3">
                                 <div className="header-right-wrap">
                                     <ul>
