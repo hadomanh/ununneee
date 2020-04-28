@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Chat from './Chat';
 import EditForm from './EditForm';
+import PostForm from './PostForm';
 
 class Profile extends Component {
 
@@ -33,6 +34,10 @@ class Profile extends Component {
 
                             <Route path="/profile/:id/edit">
                                 <EditForm />
+                            </Route>
+
+                            <Route path="/profile/:id/post">
+                                <PostForm />
                             </Route>
 
                         </Switch>
