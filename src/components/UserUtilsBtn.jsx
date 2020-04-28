@@ -196,6 +196,10 @@ class UserUtilsBtn extends Component {
                             Edit
                         </Link>
 
+                        <Link className="btn btn-outline-danger col mt-2 ml-2" to={"/profile/" + this.state.id + "/post"}>
+                            Post
+                        </Link>
+
                     </div>
 
                 </div>

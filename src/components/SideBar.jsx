@@ -20,57 +20,6 @@ class SideBar extends Component {
             status: "waiting"
         }
     }
-<<<<<<< HEAD
-=======
-    
-    handleUploadAva = (event) => {
-        event.preventDefault();
-        var that = this;
-        if (!this.state.file) {
-            this.setState({
-                errormessage: 'please upload image',
-            })
-        } else {
-            try {
-                const formData = new FormData();
-                formData.append('image', this.state.file);
-                
-                axios({
-                    method: 'post',
-                    url: 'http://localhost:5000/uploads/photos',
-                    withCredentials: true,
-                    data: formData
-                })
-                    .then(function (response) {
-                        //handle success
-                        axios({
-                            method: 'post',
-                            url: 'http://localhost:5000/users/uploadAva',
-                            withCredentials: true,
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            data: JSON.stringify({
-
-                                imageUrl: response.data.data,
-
-                            }),
-                        })
-                            .then(function (response) {
-                                //handle success  
-                            })
-                            .catch(function (error) {
-                                //handle error
-                                if (error)
-                                    console.log(error);
-                            })
-                    })
-                    .catch(function (error) {
-                        //handle error
-                        if (error)
-                            console.log(error);
-                    })
->>>>>>> master
 
     componentDidMount() {
         axios({
